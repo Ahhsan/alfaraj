@@ -1,0 +1,53 @@
+<app-header></app-header>
+<!-- START MAIN CONTENT -->
+<div class="main_content">
+
+    <!-- START SECTION SHOP -->
+    <div *ngIf='foundProds.length>0' class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="row shop_container list">
+                        <div *ngFor="let prod of foundProds" class="col-lg-3 col-md-4 col-6">
+                            <div class="product">
+                                <div class="product_img">
+                                    <a [routerLink]="['product-detail',prod.id]">
+                                        <img [src]="prod.image" alt="product_img1">
+                                    </a>
+                                </div>
+                                <div class="product_info">
+                                    <h6 class="product_title"><a class="prodName" [routerLink]="['/product-detail',prod.id]">{{prod.name}}</a></h6>
+                                   <div>
+                                    <!-- <b>{{prod.agent}}</b> -->
+                                   </div>
+                                    <div class="product_price">
+                                        <span class="price">{{prod.reduced | currency:'SAR '}}</span>
+                                        <del>{{prod.price | currency:'SAR '}}</del>
+                                        <div class="on_sale">
+                                            <span>25% Off</span>
+                                        </div>
+                                    </div>
+                                    <div class="pr_desc">
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipi    scing elit. Phasellus blandit massa enim. Nullam id varius nunc id varius nunc.</p>
+                                    </div>
+                                    <div class="list_product_action_box">
+                                        <ul class="list_none pr_action_btn">
+                                            <li class="add-to-cart"><a (click)="addToCart(prod)" style="text-decoration: none; cursor: pointer;"><i class="icon-basket-loaded"></i> Add To Cart</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div *ngIf='foundProds.length===0'class="d-flex justify-content-center align-items-center" style="height: 500px;">
+        <h2>No Products found...</h2>
+    </div>
+    <!-- END SECTION SHOP -->
+    
+    </div>

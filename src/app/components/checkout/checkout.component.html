@@ -1,0 +1,156 @@
+<app-header></app-header>
+<div class="main_content">
+  <!-- START SECTION SHOP -->
+  <div class="section">
+    <div class="container">
+    
+      <div class="row">
+        <div class="col-12">
+          <div class="medium_divider"></div>
+          <div class="divider center_icon">
+            <i class="linearicons-credit-card"></i>
+          </div>
+          <div class="medium_divider"></div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="heading_s1">
+            <h4>Billing Details</h4>
+          </div>
+          <form [formGroup]="checkoutForm">
+            <div class="form-group mb-3">
+                <input formControlName="firstName" type="text" class="form-control" placeholder="First Name">
+                <span *ngIf="checkoutForm.get('firstName').touched && checkoutForm.get('firstName').invalid" class="text-danger">First name is required</span>
+            </div>
+            <div class="form-group mb-3">
+                <input formControlName="lastName" type="text" class="form-control" placeholder="Last Name">
+                <span *ngIf="checkoutForm.get('lastName').touched && checkoutForm.get('lastName').invalid" class="text-danger">Last name is required</span>
+           
+            </div>
+            <div class="form-group mb-3">
+                <input formControlName="email" type="email" class="form-control" placeholder="Enter Your Email">
+                <span *ngIf="checkoutForm.get('email').touched && checkoutForm.get('email').invalid" class="text-danger">Valid email is required</span>
+           
+            </div>
+            <div class="form-group mb-3">
+                <input formControlName="street" type="text" class="form-control" placeholder="Street">
+                <!-- <span *ngIf="checkoutForm.get('street').touched && checkoutForm.get('street').invalid" class="t8ext-danger">First name is required</span> -->
+           
+            </div>
+            <div class="form-group mb-3">
+                <input formControlName="postcode" type="text" class="form-control" placeholder="Post Code">
+                <!-- <span *ngIf="checkoutForm.get('postcode').touched && checkoutForm.get('postcode').invalid" class="text-danger">First name is required</span> -->
+           
+            </div>
+            <div class="form-group mb-3">
+                <input formControlName="shippingAddress" type="text" class="form-control" placeholder="Address">
+                <span *ngIf="checkoutForm.get('shippingAddress').touched && checkoutForm.get('shippingAddress').invalid" class="text-danger">Address is required</span>
+           
+            </div>
+            <div class="form-group mb-3">
+                <input formControlName="city" type="text" class="form-control" placeholder="City">
+                <span *ngIf="checkoutForm.get('city').touched && checkoutForm.get('city').invalid" class="text-danger">City is required</span>
+           
+            </div>
+
+            <div class="form-group mb-3">
+                <input formControlName="country" type="text" class="form-control" placeholder="Country">
+                <span *ngIf="checkoutForm.get('country').touched && checkoutForm.get('country').invalid" class="text-danger">Country is required</span>
+           
+            </div>
+            <div class="form-group mb-3">
+                <input formControlName="phone" type="number" class="form-control" placeholder="Phone">
+           
+                <span *ngIf="checkoutForm.get('phone').touched && checkoutForm.get('phone').invalid" class="text-danger">Phone is required</span>
+            </div>
+            
+
+        
+        </form>
+        </div>
+        <div class="col-md-6"> p
+          <div class="order_review">
+            <div class="heading_s1">
+              <h4>Your Orders</h4>
+            </div>
+            <div class="table-responsive order_table">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Product</th>
+                    <th>Total</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of cartItems">
+                    <td>
+                      {{item.name}} <span class="product-qty">x {{item.quantity}}</span>
+                    </td>
+                    <td>{{item.reduced | currency: 'SAR'}}</td>
+                  </tr>
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <th>SubTotal</th>
+                    <td class="product-subtotal">{{grandTotal | currency: 'SAR'}}</td>
+                  </tr>
+                  <tr>
+                    <th>Shipping</th>
+                    <td>Free Shipping</td>
+                  </tr>
+                  <tr>
+                    <th>Total</th>
+                    <td class="product-subtotal">{{grandTotal | currency: 'SAR'}}</td>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+            <div class="payment_method">
+              <div class="heading_s1">
+                <h4>Payment</h4>
+              </div>
+              <div class="payment_option">
+                <div class="custome-radio">
+                  <input
+                    class="form-check-input"
+                    required=""
+                    type="radio"
+                    name="payment_option"
+                    id="exampleRadios3"
+                    value="option3"
+                    checked=""
+                  />
+                  <label class="form-check-label" for="exampleRadios3"
+                    >Direct Bank Transfer</label
+                  >
+                  <p data-method="option3" class="payment-text">
+                    There are many variations of passages of Lorem Ipsum
+                    available, but the majority have suffered alteration.
+                  </p>
+                </div>
+                <div class="custome-radio">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="payment_option"
+                    id="exampleRadios4"
+                    value="option4"
+                  />
+                  <label class="form-check-label" for="exampleRadios4"
+                    >Check Payment</label
+                  >
+                  <p data-method="option4" class="payment-text">
+                    Please send your cheque to Store Name, Store Street, Store
+                    Town, Store State / County, Store Postcode.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <button (click)="onPlaceOrder()" class="btn btn-fill-out btn-block">Place Order</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

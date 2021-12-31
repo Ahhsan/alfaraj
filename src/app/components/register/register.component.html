@@ -1,0 +1,141 @@
+<app-header></app-header>
+
+<!-- START MAIN CONTENT -->
+<div class="main_content">
+
+    <!-- START LOGIN SECTION -->
+    <div class="login_register_wrap section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-6 col-md-10">
+                    <div class="login_wrap">
+                        <div class="padding_eight_all bg-white">
+                            <div class="heading_s1">
+                                <h3>Create an Account</h3>
+                            </div>
+                            <form [formGroup]="userForm">
+
+                                <div class="form-group mb-3">
+                                    <b class="mb-4">Sign up as</b><br>
+
+                                    <label for="customer" class="mr-2">Customer</label>
+                                    <input formControlName="role" class="mr-3" name="role" value="customer" id="customer" type="radio">
+
+                                    <label class="mr-2" for="customer">Sub Agent</label>
+                                    <input formControlName="role" name="role" value="subagent" id="subagent" type="radio">
+
+                                    <span *ngIf="userForm.get('confirmPassword').touched && userForm.get('confirmPassword').invalid" class="text-danger">Password is required</span>
+                               
+                                </div>
+                                <div *ngIf="showStoreName" class="form-group mb-3">
+                                    <input formControlName="store" type="text" class="form-control" placeholder="Store">
+                                    <span *ngIf="userForm.get('store').touched && userForm.get('store').invalid" class="text-danger">Store name is required</span>
+                               
+                                </div>
+                                <div class="form-group mb-3">
+                                    <input formControlName="firstName" type="text" class="form-control" placeholder="First Name">
+                                    <span *ngIf="userForm.get('firstName').touched && userForm.get('firstName').invalid" class="text-danger">First name is required</span>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <input formControlName="lastName" type="text" class="form-control" placeholder="Last Name">
+                                    <span *ngIf="userForm.get('lastName').touched && userForm.get('lastName').invalid" class="text-danger">Last name is required</span>
+                               
+                                </div>
+                                <div class="form-group mb-3">
+                                    <input formControlName="email" type="email" class="form-control" placeholder="Enter Your Email">
+                                    <span *ngIf="userForm.get('email').touched && userForm.get('email').invalid" class="text-danger">Valid email is required</span>
+                               
+                                </div>
+                                <div class="form-group mb-3">
+                                    <input formControlName="street" type="text" class="form-control" placeholder="Street">
+                                    <!-- <span *ngIf="userForm.get('street').touched && userForm.get('street').invalid" class="t8ext-danger">First name is required</span> -->
+                               
+                                </div>
+                                <div class="form-group mb-3">
+                                    <input formControlName="postcode" type="text" class="form-control" placeholder="Post Code">
+                                    <!-- <span *ngIf="userForm.get('postcode').touched && userForm.get('postcode').invalid" class="text-danger">First name is required</span> -->
+                               
+                                </div>
+                                <div class="form-group mb-3">
+                                    <input formControlName="city" type="text" class="form-control" placeholder="City">
+                                    <span *ngIf="userForm.get('city').touched && userForm.get('city').invalid" class="text-danger">City is required</span>
+                               
+                                </div>
+                                <div class="form-group mb-3">
+                                    <input formControlName="country" type="text" class="form-control" placeholder="Country">
+                                    <span *ngIf="userForm.get('country').touched && userForm.get('country').invalid" class="text-danger">Country is required</span>
+                               
+                                </div>
+                                <div class="form-group mb-3">
+                                    <input formControlName="phone" type="number" class="form-control" placeholder="Phone">
+                               
+                                    <span *ngIf="userForm.get('phone').touched && userForm.get('phone').invalid" class="text-danger">Phone is required</span>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <input formControlName="userName" type="text" class="form-control" placeholder="Username">
+                                    <span *ngIf="userForm.get('userName').touched && userForm.get('userName').invalid" class="text-danger">Uername is required</span>
+                               
+                                </div>
+                        
+                                <div class="form-group mb-3">
+                                    <input class="form-control" formControlName="password" required="" type="password" name="password" placeholder="Password">
+                                    <span *ngIf="userForm.get('password').touched && userForm.get('password').invalid" class="text-danger">Password is required</span>
+                               
+                                </div>
+                                <div class="form-group mb-3">
+                                    <input class="form-control" formControlName="confirmPassword" required="" type="password" name="password" placeholder="Confirm Password">
+                                    <span *ngIf="userForm.get('confirmPassword').touched && userForm.get('confirmPassword').invalid" class="text-danger">Password is required</span>
+                               
+                                </div>
+
+
+
+                                <!-- <div *ngIf="showStoreName" class="form-group mb-3">
+                                    <input class="form-control" formControlName="store" required="" type="text" name="store" placeholder="Store Name">                               
+                                </div> -->
+                                
+                                <div class="login_footer form-group mb-3">
+                                    <div class="chek-form">
+                                        <div class="custome-checkbox">
+                                            <input class="form-check-input" type="checkbox" name="checkbox" id="exampleCheckbox2" value="">
+                                            <label class="form-check-label" for="exampleCheckbox2"><span>I agree to terms &amp; Policy.</span></label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <button type="submit" class="btn btn-fill-out btn-block" (click)="onRegister()" name="register">Register</button>
+                                </div>
+                            </form>
+                            <div class="form-note text-center">Already have an account? <a routerLink="/login">Log in</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END LOGIN SECTION -->
+    
+    <!-- START SECTION SUBSCRIBE NEWSLETTER -->
+    <div class="section bg_default small_pt small_pb">
+        <div class="container">	
+            <div class="row align-items-center">	
+                <div class="col-md-6">
+                    <div class="heading_s1 mb-md-0 heading_light">
+                        <h3>Subscribe Our Newsletter</h3>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="newsletter_form">
+                        <form>
+                            <input type="text" required="" class="form-control rounded-0" placeholder="Enter Email Address">
+                            <button type="submit" class="btn btn-dark rounded-0" name="submit" value="Submit">Subscribe</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- START SECTION SUBSCRIBE NEWSLETTER -->
+    
+    </div>
+    <!-- END MAIN CONTENT -->

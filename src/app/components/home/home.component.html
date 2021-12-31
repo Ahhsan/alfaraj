@@ -1,0 +1,564 @@
+<!-- START HEADER -->
+<header class="header_wrap">
+  <div class="middle-header dark_skin">
+    <div class="custom-container">
+      <div class="nav_block">
+        <a class="navbar-brand d-flex align-items-center" routerLink="/home">
+          <img class="logo_light" src="assets/logoOnly.png" alt="logo" />
+          <img class="logo_dark" src="assets/logoOnly.png" alt="logo" />
+        </a>
+        <div class="product_search_form rounded_input">
+          <form>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <div class="custom_select">
+                  <select class="first_null">
+                    <option value="">All Category</option>
+                    <option value="Dresses">Dresses</option>
+                    <option value="Shirt-Tops">Shirt & Tops</option>
+                    <option value="T-Shirt">T-Shirt</option>
+                    <option value="Pents">Pents</option>
+                    <option value="Jeans">Jeans</option>
+                  </select>
+                </div>
+              </div>
+              <input
+                class="form-control"
+                [(ngModel)]="prodToSearch"
+                name="prodSearch"
+                placeholder="Search Product..."
+                required=""
+                type="text"
+              />
+              <button type="submit" (click)="searchProd()" class="search_btn2">
+                <i class="fa fa-search"></i>
+              </button>
+            </div>
+          </form>
+        </div>
+        <ul class="navbar-nav attr-nav align-items-center">
+          <li>
+            <a routerLink="/my-account" class="nav-link"
+              ><i class="linearicons-user"></i
+            ></a>
+          </li>
+          <li class="dropdown cart_dropdow">
+            <a class="nav-link cart_trigger" routerLink="/cart"
+              ><i class="linearicons-bag2"></i
+              ><span class="cart_count">{{ cartItemCount }}</span
+              ><span class="amount"
+                ><span class="currency_symbol"></span
+                >{{ grandTotal | currency: "SAR " }}</span
+              ></a
+            >
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div
+    class="bottom_header dark_skin main_menu_uppercase border-top border-bottom"
+  >
+    <div class="custom-container">
+      <div class="row">
+        <div class="col-lg-3 col-md-4 col-sm-6 col-3">
+          <div class="categories_wrap">
+            <button
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navCatContent"
+              aria-expanded="false"
+              class="categories_btn"
+            >
+              <i class="linearicons-menu"></i><span>All Categories </span>
+            </button>
+            <div id="navCatContent" class="nav_cat navbar collapse">
+              <ul>
+                <li>
+                  <a
+                    class="dropdown-item nav-link nav_item"
+                    href="coming-soon.html"
+                    ><i class="fas fa-list-ul"></i> <span>Mobiles</span></a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item nav-link nav_item"
+                    href="coming-soon.html"
+                    ><i class="fas fa-list-ul"></i> <span>Computer</span></a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item nav-link nav_item"
+                    href="coming-soon.html"
+                    ><i class="fas fa-list-ul"></i> <span>Camera</span></a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item nav-link nav_item"
+                    href="coming-soon.html"
+                    ><i class="fas fa-list-ul"></i> <span>Electronics</span></a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item nav-link nav_item"
+                    href="coming-soon.html"
+                    ><i class="fas fa-list-ul"></i> <span>Headphones</span></a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item nav-link nav_item" href="404.html"
+                    ><i class="fas fa-list-ul"></i> <span>Gaming</span></a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item nav-link nav_item" href="login.html"
+                    ><i class="fas fa-list-ul"></i><span>Watches</span></a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item nav-link nav_item"
+                    href="register.html"
+                    ><i class="fas fa-list-ul"></i>
+                    <span>Home Audio & Theater</span></a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item nav-link nav_item"
+                    href="coming-soon.html"
+                    ><i class="fas fa-list-ul"></i>
+                    <span>TV & Smart Box</span></a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item nav-link nav_item" href="404.html"
+                    ><i class="fas fa-list-ul"></i><span>Printer</span></a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item nav-link nav_item" href="login.html"
+                    ><i class="fas fa-list-ul"></i><span>Fax Machine</span></a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item nav-link nav_item"
+                    href="register.html"
+                    ><i class="fas fa-list-ul"></i> <span>Mouse</span></a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-9 col-md-8 col-sm-6 col-9">
+          <nav class="navbar navbar-expand-lg">
+            <button
+              class="navbar-toggler side_navbar_toggler"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarSidetoggle"
+              aria-expanded="false"
+            >
+              <span class="ion-android-menu"></span>
+            </button>
+            <div class="pr_search_icon">
+              <a href="javascript:void(0);" class="nav-link pr_search_trigger"
+                ><i class="linearicons-magnifier"></i
+              ></a>
+            </div>
+            <div
+              class="collapse navbar-collapse mobile_side_menu"
+              id="navbarSidetoggle"
+            >
+              <ul class="navbar-nav">
+                <li>
+                  <a class="nav-link nav_item" routerLink="/home">Home</a>
+                </li>
+                <li>
+                  <a class="nav-link nav_item" routerLink="/agent/3"
+                    >Products</a
+                  >
+                </li>
+                <li>
+                  <a class="nav-link nav_item" routerLink="/about-us"
+                    >About Us</a
+                  >
+                </li>
+                <li>
+                  <a class="nav-link nav_item" routerLink="/contact-us"
+                    >Contact Us</a
+                  >
+                </li>
+              </ul>
+            </div>
+            <div class="contact_phone contact_support">
+              <i class="linearicons-phone-wave"></i>
+              <span>+966 54 036 3034⁩</span>
+            </div>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- START SECTION BANNER -->
+<div class="mt-4 staggered-animation-wrap">
+  <div class="custom-container">
+    <div class="row">
+      <div class="col-lg-7 offset-lg-3">
+        <img class="slideImg" src="../../../assets/banner1.jpeg" alt="" />
+      </div>
+      <div class="col-lg-2 d-none d-lg-block">
+        <div class="shop_banner2 el_banner1">
+          <a href="#" class="hover_effect1">
+            <div class="el_title text_white">
+              <h6>iPhone Collection</h6>
+              <span>25% off</span>
+            </div>
+            <div class="el_img">
+              <img
+                class="promo1"
+                src="../../../assets//swaps/digital-download-music.jpg"
+                alt="shop_banner_img6"
+              />
+            </div>
+          </a>
+        </div>
+        <div class="shop_banner2 el_banner2">
+          <a href="#" class="hover_effect1">
+            <div class="el_title text_white">
+              <h6>Branded Wristwatches</h6>
+              <span><u>Shop Now</u></span>
+            </div>
+            <div class="el_img">
+              <img
+                class="promo2"
+                src="../../../assets/swaps/modern-bamboo-wristwatch.jpg"
+                alt="shop_banner_img7"
+              />
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- END SECTION BANNER -->
+
+<div *ngIf="allProds" class="check">
+  <!-- END MAIN CONTENT -->
+  <div class="main_content">
+    <!-- START SECTION SHOP -->
+    <div class="section small_pt pb-0 mt-4">
+      <div class="custom-container">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="row">
+              <div class="col-12">
+                <div class="heading_tab_header">
+                  <div class="heading_s2">
+                    <h4>Products</h4>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <div class="tab_slider">
+                  <div
+                    class="tab-pane fade show active"
+                    id="arrival"
+                    role="tabpanel"
+                    aria-labelledby="arrival-tab"
+                  >
+                    <div
+                      class="
+                        product_slider
+                        carousel_slider
+                        owl-carousel owl-theme
+                        dot_style1
+                      "
+                      data-loop="true"
+                      data-margin="20"
+                      data-responsive='{"0":{"items": "1"}, "481":{"items": "2"}, "768":{"items": "3"}, "991":{"items": "4"}}'
+                    >
+                      <!-- Show prods here -->
+                      <div
+                        class="item"
+                        *ngFor="let prod of allProds.slice(0, 4)"
+                      >
+                        <div class="product_wrap">
+                          <div class="product_img">
+                            <a href="shop-product-detail.html">
+                              <img
+                                class="prodImg"
+                                [src]="prod.image"
+                                alt="el_img6"
+                              />
+                              <img
+                                class="prodImg product_hover_img"
+                                [src]="prod.image"
+                                alt="el_hover_img6"
+                              />
+                            </a>
+                            <div class="product_action_box">
+                              <ul class="list_none pr_action_btn">
+                                <li class="add-to-cart">
+                                  <a (click)="addToCart(prod)"
+                                    ><i class="icon-basket-loaded"></i> Add To
+                                    Cart</a
+                                  >
+                                </li>
+                     
+                              </ul>
+                            </div>
+                          </div>
+                          <div class="product_info">
+                            <h6 class="product_title">
+                              <a
+                                class="prodName"
+                                [routerLink]="['/product-detail', prod.id]"
+                                >{{ prod.name }}</a
+                              >
+                            </h6>
+                            <b>{{ prod.user }}</b>
+                            <div class="product_price">
+                              <span class="price">{{
+                                prod.reduced | currency: "SAR "
+                              }}</span>
+                              <del>{{ prod.price | currency: "SAR " }}</del>
+                              <div class="on_sale">
+                                <span>25% Off</span>
+                              </div>
+                            </div>
+                            <div class="pr_desc">
+                              <p>
+                                Lorem ipsum dolor sit amet, consectetur adipi
+                                scing elit. Phasellus blandit massa enim. Nullam
+                                id varius nunc id varius nunc.
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- END SECTION SHOP -->
+
+    <!-- START SECTION BANNER -->
+    <div class="section pb_20 small_pt">
+      <div class="custom-container">
+        <div class="row">
+          <div class="col-md-4">
+            <div class="sale-banner mb-3 mb-md-4">
+              <a class="hover_effect1" href="#">
+                <img
+                  src="assets/images/shop_banner_img7.jpg"
+                  alt="shop_banner_img7"
+                />
+              </a>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="sale-banner mb-3 mb-md-4">
+              <a class="hover_effect1" href="#">
+                <img
+                  src="assets/images/shop_banner_img8.jpg"
+                  alt="shop_banner_img8"
+                />
+              </a>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="sale-banner mb-3 mb-md-4">
+              <a class="hover_effect1" href="#">
+                <img
+                  src="assets/images/shop_banner_img9.jpg"
+                  alt="shop_banner_img9"
+                />
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- END SECTION BANNER -->
+
+    <!-- START SECTION SHOP -->
+    <div class="section small_pt small_pb">
+      <div class="custom-container">
+        <div class="row">
+          <div class="col-xl-3 d-none d-xl-block">
+            <div class="sale-banner">
+              <a class="hover_effect1" href="#">
+                <img
+                  src="assets/images/shop_banner_img10.jpg"
+                  alt="shop_banner_img10"
+                />
+              </a>
+            </div>
+          </div>
+          <div class="col-xl-9">
+            <div class="row">
+              <div class="col-12">
+                <div class="heading_tab_header">
+                  <div class="heading_s2">
+                    <h4>Trending products</h4>
+                  </div>
+                  <div class="view_all">
+                    <a href="#" class="text_default"
+                      ><i class="linearicons-power"></i>
+                      <span>View All</span></a
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <div
+                  class="
+                    product_slider
+                    carousel_slider
+                    owl-carousel owl-theme
+                    dot_style1
+                  "
+                  data-loop="true"
+                  data-margin="20"
+                  data-responsive='{"0":{"items": "1"}, "481":{"items": "2"}, "768":{"items": "3"}, "991":{"items": "4"}}'
+                >
+                  <div *ngFor="let prod of allProds.slice(0, 3)" class="item">
+                    <div class="product_wrap">
+                      <!-- <span class="pr_flash bg-danger">Hot</span> -->
+                      <div class="product_img">
+                        <a href="shop-product-detail.html">
+                          <img
+                            class="prodImg"
+                            [src]="prod.image"
+                            alt="el_img6"
+                          />
+                          <img
+                            class="prodImg product_hover_img"
+                            [src]="prod.image"
+                            alt="el_hover_img6"
+                          />
+                        </a>
+                        <div class="product_action_box">
+                          <ul class="list_none pr_action_btn">
+                            <li class="add-to-cart">
+                              <a (click)="addToCart(prod)"
+                                ><i class="icon-basket-loaded"></i> Add To
+                                Cart</a
+                              >
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                      <div class="product_info">
+                        <h6 class="product_title">
+                          <a
+                            class="prodName"
+                            [routerLink]="['/product-detail', prod.id]"
+                            >{{ prod.name }}</a
+                          >
+                        </h6>
+                        <b>{{ prod.user }}</b>
+                        <div class="product_price">
+                          <span class="price">{{
+                            prod.reduced | currency: "SAR "
+                          }}</span>
+                          <del>{{ prod.price | currency: "SAR " }}</del>
+                          <div class="on_sale">
+                            <span>25% Off</span>
+                          </div>
+                        </div>
+                        <div class="pr_desc">
+                          <p>
+                            Lorem ipsum dolor sit amet, consectetur adipi scing
+                            elit. Phasellus blandit massa enim. Nullam id varius
+                            nunc id varius nunc.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- END SECTION SHOP -->
+
+    <div class="newProds row">
+      <div class="heading_s2 mb-3">
+        <h4>New Added Products</h4>
+      </div>
+      <div *ngFor="let prod of allProds.slice(0, 12)" class="col-sm-4 col-md-3 col-lg-2">
+        <div class="product_wrap">
+          <!-- <span class="pr_flash bg-danger">Hot</span> -->
+          <div class="product_img">
+            <a href="shop-product-detail.html">
+              <img class="prodImg" [src]="prod.image" alt="el_img6" />
+              <img
+                class="prodImg product_hover_img"
+                [src]="prod.image"
+                alt="el_hover_img6"
+              />
+            </a>
+            <div class="product_action_box">
+              <ul class="list_none pr_action_btn">
+                <li class="add-to-cart">
+                  <a (click)="addToCart(prod)"
+                    ><i class="icon-basket-loaded"></i> Add To Cart</a
+                  >
+                </li>
+                <!-- <li><a href="shop-compare.html" class="popup-ajax"><i class="icon-shuffle"></i></a></li>
+                        <li><a href="shop-quick-view.html" class="popup-ajax"><i class="icon-magnifier-add"></i></a></li> -->
+                <!-- <li><a href="#"><i class="icon-heart"></i></a></li> -->
+              </ul>
+            </div>
+          </div>
+          <div class="product_info">
+            <h6 class="product_title">
+              <a class="prodName" [routerLink]="['/product-detail', prod.id]">{{
+                prod.name
+              }}</a>
+            </h6>
+            <b>{{ prod.user }}</b>
+            <div class="product_price">
+              <span class="price">{{ prod.reduced | currency: "SAR " }}</span>
+              <del>{{ prod.price | currency: "SAR " }}</del>
+              <div class="on_sale">
+                <span>25% Off</span>
+              </div>
+            </div>
+            <div class="pr_desc">
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipi scing elit.
+                Phasellus blandit massa enim. Nullam id varius nunc id varius
+                nunc.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- END MAIN CONTENT -->

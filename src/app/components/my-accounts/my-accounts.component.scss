@@ -1,0 +1,16 @@
+.nav-link {
+  cursor: pointer;
+}
+.orderStatus {
+  background: var(--bs-danger);
+  color: white;
+  padding: 5px 8px;
+  border-radius: 10px;
+  font-size: 14px;
+}
+.completedOrder{
+    background: var(--success); 
+}
+table{
+    overflow: hidden;
+}

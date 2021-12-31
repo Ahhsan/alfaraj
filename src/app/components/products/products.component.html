@@ -1,0 +1,95 @@
+<!-- START MAIN CONTENT -->
+<app-header></app-header>
+<div class="main_content">
+  <!-- START SECTION SHOP -->
+  <div class="section">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-9">
+          <div class="row shop_container lis">
+            <div *ngFor="let prod of allProds" class="col-md-4">
+              <div class="product">
+                <div class="product_img">
+                    <img
+                      class="prodImg"
+                      [src]="prod.image"
+                      alt="product_img1"
+                    />
+           
+                </div>
+                <div class="product_info">
+                  <h6 class="product_title">
+                    <a [routerLink]="['/product-detail', prod.id]"
+                      >{{prod.name}}</a 
+                    >
+                    <br>
+                    <a [routerLink]="['/agent',prod.user]" class="storeName">{{prod.user}}</a>
+                  </h6>
+                  <div class="product_price">
+                    <span class="price">{{
+                      prod.reduced | currency: "SAR "
+                    }}</span>
+                    <del>{{ prod.price | currency: "SAR " }}</del>
+                    <div class="on_sale">
+                      <span>25% Off</span> 
+                    </div>
+                  </div>
+
+                  <div class="prod_desc">
+                    <p>{{ prod.short_description }}</p>
+                  </div>
+                  <div class="actions">
+                      <button class="addToCart btn btn-danger" (click)="addToCart(prod)"><i class="icon-basket-loaded"></i>Add to cart</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+         
+        </div>
+        <div class="col-lg-3 order-lg-first mt-4 pt-2 mt-lg-0 pt-lg-0">
+          <div class="sidebar">
+            <div class="widget">
+              <h5 class="widget_title">Categories</h5>
+              <ul class="widget_categories">
+                <li>
+                  <a href="#"
+                    ><span class="categories_name">Women</span
+                    ><span class="categories_num">(9)</span></a
+                  >
+                </li>
+                <li>
+                  <a href="#"
+                    ><span class="categories_name">Top</span
+                    ><span class="categories_num">(6)</span></a
+                  >
+                </li>
+                <li>
+                  <a href="#"
+                    ><span class="categories_name">T-Shirts</span
+                    ><span class="categories_num">(4)</span></a
+                  >
+                </li>
+                <li>
+                  <a href="#"
+                    ><span class="categories_name">Men</span
+                    ><span class="categories_num">(7)</span></a
+                  >
+                </li>
+                <li>
+                  <a href="#"
+                    ><span class="categories_name">Shoes</span
+                    ><span class="categories_num">(12)</span></a
+                  >
+                </li>
+              </ul>
+            </div>
+   
+          
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- END SECTION SHOP -->
+</div>
