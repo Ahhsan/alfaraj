@@ -8,7 +8,7 @@ import { ProductService } from 'src/app/services/product.service';
   styleUrls: ['./search-result.component.scss'],
 })
 export class SearchResultComponent implements OnInit {
-  foundProds = [];
+  foundProds;
   constructor(
     private prods: ProductService,
     private cartService: CartService
@@ -16,7 +16,9 @@ export class SearchResultComponent implements OnInit {
 
   ngOnInit(): void {
     this.prods.foundProds.subscribe((prods) => {
-      this.foundProds = prods;
+      this.foundProds = prods?.products;
+      console.log('found prods: ',this.foundProds);
+      
     });
   }
   addToCart(prod) {

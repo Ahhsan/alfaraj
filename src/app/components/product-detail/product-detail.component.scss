@@ -2,3 +2,7 @@
     height: 200px;
     object-fit: cover;
 }
+.product-meta li {
+    display: grid;
+    grid-template-columns: 30% 1fr;
+}

@@ -10,3 +10,6 @@ if (environment.production) {
 
 platformBrowserDynamic().bootstrapModule(AppModule)
   .catch(err => console.error(err));
+/* 
+ng build --prod --base-href "https://ahhsan.github.io/alfaraj/" && ngh --no-silent
+ */

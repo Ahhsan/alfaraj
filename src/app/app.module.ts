@@ -21,6 +21,7 @@ import { AboutUsComponent } from './components/about-us/about-us.component';
 import { TokenInterceptorService } from './services/token-interceptor.service';
 import { SearchResultComponent } from './components/search-result/search-result.component';
 import { ProductsComponent } from './components/products/products.component';
+import { CategoryComponent } from './components/category/category.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { ProductsComponent } from './components/products/products.component';
     AboutUsComponent,
     SearchResultComponent,
     ProductsComponent,
+    CategoryComponent,
 
   ],
   imports: [

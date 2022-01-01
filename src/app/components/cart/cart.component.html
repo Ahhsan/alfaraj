@@ -4,7 +4,7 @@
 
     <!-- START SECTION SHOP -->
     <div class="section">
-        <div class="container">
+        <div *ngIf="cartItems.length>0" class="container">
             <div class="row">
                 <div class="col-12">
                     <div class="table-responsive shop_cart_table">
@@ -75,6 +75,11 @@
                 </div>
             </div>
         </div>
+        <div *ngIf="cartItems.length === 0">
+            <div class="noItems">
+              <p class="text-center noItemsMsg">You don't have any items in your cart</p>
+            </div>
+          </div>
     </div>
     <!-- END SECTION SHOP -->
     

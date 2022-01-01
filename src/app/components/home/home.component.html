@@ -38,8 +38,8 @@
         </div>
         <ul class="navbar-nav attr-nav align-items-center">
           <li>
-            <a routerLink="/my-account" class="nav-link"
-              ><i class="linearicons-user"></i
+            <a  class="nav-link"
+              ><i (click)="onClickuser()" class="linearicons-user"></i
             ></a>
           </li>
           <li class="dropdown cart_dropdow">
@@ -74,84 +74,14 @@
             </button>
             <div id="navCatContent" class="nav_cat navbar collapse">
               <ul>
-                <li>
+                <li *ngFor="let cat of categories">
                   <a
                     class="dropdown-item nav-link nav_item"
-                    href="coming-soon.html"
-                    ><i class="fas fa-list-ul"></i> <span>Mobiles</span></a
+                   [routerLink]="['/products-category',cat.id]"
+                    ><i class="fas fa-list-ul"></i> <span>{{cat.name}}</span></a
                   >
                 </li>
-                <li>
-                  <a
-                    class="dropdown-item nav-link nav_item"
-                    href="coming-soon.html"
-                    ><i class="fas fa-list-ul"></i> <span>Computer</span></a
-                  >
-                </li>
-                <li>
-                  <a
-                    class="dropdown-item nav-link nav_item"
-                    href="coming-soon.html"
-                    ><i class="fas fa-list-ul"></i> <span>Camera</span></a
-                  >
-                </li>
-                <li>
-                  <a
-                    class="dropdown-item nav-link nav_item"
-                    href="coming-soon.html"
-                    ><i class="fas fa-list-ul"></i> <span>Electronics</span></a
-                  >
-                </li>
-                <li>
-                  <a
-                    class="dropdown-item nav-link nav_item"
-                    href="coming-soon.html"
-                    ><i class="fas fa-list-ul"></i> <span>Headphones</span></a
-                  >
-                </li>
-                <li>
-                  <a class="dropdown-item nav-link nav_item" href="404.html"
-                    ><i class="fas fa-list-ul"></i> <span>Gaming</span></a
-                  >
-                </li>
-                <li>
-                  <a class="dropdown-item nav-link nav_item" href="login.html"
-                    ><i class="fas fa-list-ul"></i><span>Watches</span></a
-                  >
-                </li>
-                <li>
-                  <a
-                    class="dropdown-item nav-link nav_item"
-                    href="register.html"
-                    ><i class="fas fa-list-ul"></i>
-                    <span>Home Audio & Theater</span></a
-                  >
-                </li>
-                <li>
-                  <a
-                    class="dropdown-item nav-link nav_item"
-                    href="coming-soon.html"
-                    ><i class="fas fa-list-ul"></i>
-                    <span>TV & Smart Box</span></a
-                  >
-                </li>
-                <li>
-                  <a class="dropdown-item nav-link nav_item" href="404.html"
-                    ><i class="fas fa-list-ul"></i><span>Printer</span></a
-                  >
-                </li>
-                <li>
-                  <a class="dropdown-item nav-link nav_item" href="login.html"
-                    ><i class="fas fa-list-ul"></i><span>Fax Machine</span></a
-                  >
-                </li>
-                <li>
-                  <a
-                    class="dropdown-item nav-link nav_item"
-                    href="register.html"
-                    ><i class="fas fa-list-ul"></i> <span>Mouse</span></a
-                  >
-                </li>
+        
               </ul>
             </div>
           </div>
@@ -181,7 +111,7 @@
                   <a class="nav-link nav_item" routerLink="/home">Home</a>
                 </li>
                 <li>
-                  <a class="nav-link nav_item" routerLink="/agent/3"
+                  <a class="nav-link nav_item" routerLink="/products"
                     >Products</a
                   >
                 </li>

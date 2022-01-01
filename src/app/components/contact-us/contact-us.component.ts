@@ -29,12 +29,17 @@ export class ContactUsComponent implements OnInit {
   ngOnInit(): void {}
 
   sendForm() {
-    this.spinner.showSpinner();
-    setTimeout(() => {
-    this.spinner.hideSpinner();
-      this.toastr.success('Your message has been sent...')
-    }, 2500);
-    // this.auth.sendContactForm(this.contactForm.value).toPromise().then(resp=>{
-    // })
+    // this.spinner.showSpinner();
+    // setTimeout(() => {
+    // this.spinner.hideSpinner();
+    //   this.toastr.success('Your message has been sent...')
+    // }, 2500);
+    this.auth.sendContactForm(this.contactForm.value).toPromise().then(resp=>{
+      console.log(resp);
+          this.toastr.success('Your message has been sent...')
+    }).catch(error=>{
+      this.toastr.error('An error occurred while sending message...')
+
+    })
   }
 }

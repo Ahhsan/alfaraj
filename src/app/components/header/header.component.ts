@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { CartService } from 'src/app/services/cart.service';
@@ -14,6 +14,8 @@ export class HeaderComponent implements OnInit {
   prodToSearch = '';
   grandTotal: number;
   cartItemCount: number;
+  @Input() showCats='';
+  @Input() showLogo:boolean=true;
   constructor(
     private cartService: CartService,
     private productService: ProductService,
@@ -31,10 +33,10 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {}
   searchProd() {
-    this.spinner.showSpinner();
+    // this.spinner.showSpinner();
     console.log('searching...');
     this.productService
-      .searchProduct(this.prodToSearch)
+      .searchProduct(this.prodToSearch).toPromise()
       .then((resp) => {
         console.log('found prods: ', resp);
         this.productService.setFoundProds(resp);
@@ -42,7 +44,7 @@ export class HeaderComponent implements OnInit {
         this.router.navigate(['/search-result']);
       })
       .catch((error) => {
-        this.spinner.hideSpinner();
+        // this.spinner.hideSpinner();
       });
   }
   onClickuser() {

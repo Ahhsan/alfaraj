@@ -3,7 +3,7 @@
     <div class="middle-header dark_skin">
     	<div class="custom-container">
         	<div class="nav_block">
-                <a class="navbar-brand d-flex align-items-center" routerLink="/home">
+                <a *ngIf="showLogo" class="navbar-brand d-flex align-items-center" routerLink="/home">
                     <img class="logo_light" src="assets/logoOnly.png" alt="logo" />
                     <img class="logo_dark" src="assets/logoOnly.png" alt="logo" />
                 </a>
@@ -13,7 +13,7 @@
                             <div class="input-group-prepend">
                                 <div class="custom_select">
                                     <select class="first_null">
-                                        <option value="">All Category</option>
+                                        <option value="">All Categorries</option>
                                         <option value="Dresses">Dresses</option>
                                         <option value="Shirt-Tops">Shirt & Tops</option>
                                         <option value="T-Shirt">T-Shirt</option>

@@ -9,6 +9,7 @@ import { ProductService } from 'src/app/services/product.service';
 })
 export class ProductsComponent implements OnInit {
   allProds: any;
+  cats:any;
   constructor(
     private products: ProductService,
     private cartService: CartService
@@ -19,6 +20,11 @@ export class ProductsComponent implements OnInit {
       console.log('All prods: ', prods);
       this.allProds = prods;
     });
+    this.products.getAllCats().toPromise().then(categories=>{
+      this.cats=categories;
+      console.log(this.cats);
+      
+    })
   }
   addToCart(prod) {
     this.cartService.addToCart(prod);

@@ -18,7 +18,13 @@
           <div class="heading_s1">
             <h4>Billing Details</h4>
           </div>
-          <form [formGroup]="checkoutForm">
+          <form >
+            <div class="form-group">
+              <textarea [(ngModel)]="shippingAddress" name=""class="form-control" id="" cols="30" rows="10" placeholder="Shipping Address"></textarea>
+              
+            </div>
+          </form>
+          <!-- <form [formGroup]="checkoutForm">
             <div class="form-group mb-3">
                 <input formControlName="firstName" type="text" class="form-control" placeholder="First Name">
                 <span *ngIf="checkoutForm.get('firstName').touched && checkoutForm.get('firstName').invalid" class="text-danger">First name is required</span>
@@ -35,12 +41,10 @@
             </div>
             <div class="form-group mb-3">
                 <input formControlName="street" type="text" class="form-control" placeholder="Street">
-                <!-- <span *ngIf="checkoutForm.get('street').touched && checkoutForm.get('street').invalid" class="t8ext-danger">First name is required</span> -->
            
             </div>
             <div class="form-group mb-3">
                 <input formControlName="postcode" type="text" class="form-control" placeholder="Post Code">
-                <!-- <span *ngIf="checkoutForm.get('postcode').touched && checkoutForm.get('postcode').invalid" class="text-danger">First name is required</span> -->
            
             </div>
             <div class="form-group mb-3">
@@ -67,12 +71,12 @@
             
 
         
-        </form>
+        </form> -->
         </div>
-        <div class="col-md-6"> p
+        <div class="col-md-6"> 
           <div class="order_review">
             <div class="heading_s1">
-              <h4>Your Orders</h4>
+              <h4>Items</h4>
             </div>
             <div class="table-responsive order_table">
               <table class="table">
@@ -111,40 +115,9 @@
                 <h4>Payment</h4>
               </div>
               <div class="payment_option">
-                <div class="custome-radio">
-                  <input
-                    class="form-check-input"
-                    required=""
-                    type="radio"
-                    name="payment_option"
-                    id="exampleRadios3"
-                    value="option3"
-                    checked=""
-                  />
-                  <label class="form-check-label" for="exampleRadios3"
-                    >Direct Bank Transfer</label
-                  >
-                  <p data-method="option3" class="payment-text">
-                    There are many variations of passages of Lorem Ipsum
-                    available, but the majority have suffered alteration.
-                  </p>
-                </div>
-                <div class="custome-radio">
-                  <input
-                    class="form-check-input"
-                    type="radio"
-                    name="payment_option"
-                    id="exampleRadios4"
-                    value="option4"
-                  />
-                  <label class="form-check-label" for="exampleRadios4"
-                    >Check Payment</label
-                  >
-                  <p data-method="option4" class="payment-text">
-                    Please send your cheque to Store Name, Store Street, Store
-                    Town, Store State / County, Store Postcode.
-                  </p>
-                </div>
+                <p data-method="option3" class="payment-text">
+                  Payment is made manually through Admin
+                </p>
               </div>
             </div>
             <button (click)="onPlaceOrder()" class="btn btn-fill-out btn-block">Place Order</button>

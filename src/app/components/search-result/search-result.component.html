@@ -3,8 +3,9 @@
 <div class="main_content">
 
     <!-- START SECTION SHOP -->
-    <div *ngIf='foundProds.length>0' class="section">
+    <div *ngIf='foundProds' class="section">
         <div class="container">
+            <h5 class="mb-5">Search Results...</h5>
             <div class="row">
                 <div class="col-12">
                     <div class="row shop_container list">
@@ -45,7 +46,7 @@
             </div>
         </div>
     </div>
-    <div *ngIf='foundProds.length===0'class="d-flex justify-content-center align-items-center" style="height: 500px;">
+    <div *ngIf='foundProds'class="d-flex justify-content-center align-items-center" style="height: 500px;">
         <h2>No Products found...</h2>
     </div>
     <!-- END SECTION SHOP -->

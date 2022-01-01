@@ -11,7 +11,9 @@ export class SpinnerService {
   currentStatus = new BehaviorSubject(false);
   constructor(private toastr: ToastrService) {}
   hideSpinner() {
-    this.currentStatus.next(false);
+    setTimeout(() => {
+      this.currentStatus.next(false);
+    }, 100);
   }
   showSpinner() {
     this.currentStatus.next(true);

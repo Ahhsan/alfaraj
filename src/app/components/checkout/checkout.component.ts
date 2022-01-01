@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { AuthService } from 'src/app/services/auth.service';
 import { CartService } from 'src/app/services/cart.service';
 import { OrderService } from 'src/app/services/order.service';
 
@@ -14,13 +15,16 @@ export class CheckoutComponent implements OnInit {
   checkoutForm: FormGroup;
   grandTotal: number;
   cartItems = [];
+  shippingAddress:String;
   constructor(
     private cartService: CartService,
     private fb: FormBuilder,
     private toastrService: ToastrService,
     private router: Router,
-    private orderService: OrderService
+    private orderService: OrderService,
+    private authService:AuthService
   ) {
+    
     this.cartItems = this.cartService.getCart();
     console.log('Cart');
 
@@ -41,27 +45,37 @@ export class CheckoutComponent implements OnInit {
     });
   }
   ngOnInit(): void {}
-  onPlaceOrder() {
-    this.checkoutForm.value.items = this.cartItems;
-    this.checkoutForm.value.price = this.grandTotal;
-    this.checkoutForm.value.userId = 3;
-    let orderForm={
-      orderItems:this.cartItems,
-      price:this.grandTotal,
-      // userId:JSON.parse(localStorage.getItem('user')).id,
-      userId:3,
-      shippingAddress:this.checkoutForm.value.shippingAddress,
-    }
-    this.orderService
-      .placeOrder(orderForm)
-      .toPromise()
-      .then((resp) => {
-        this.toastrService.success('Order placed successfully');
-        this.checkoutForm.reset();
-        this.router.navigate(['/my-account']);
-      })
-      .catch((error) => {
-        this.toastrService.error('An error occurred');
-      });
+  async onPlaceOrder() {
+    console.log('Shpping adderss: ',this.shippingAddress);
+    
+    this.authService.checkLogin().then(status=>{
+      if (status){
+        this.checkoutForm.value.items = this.cartItems;
+        this.checkoutForm.value.price = this.grandTotal;
+        this.checkoutForm.value.userId = 3;
+        let orderForm={
+          orderItems:this.cartItems,
+          price:this.grandTotal,
+          shippingAddress:this.shippingAddress,
+        }
+        this.orderService
+          .placeOrder(orderForm)
+          .toPromise()
+          .then((resp) => {
+            this.toastrService.success('Order placed successfully');
+            this.checkoutForm.reset();
+            this.cartService.makeCartEmpty();
+            this.router.navigate(['/my-account']);
+          })
+          .catch((error) => {
+            this.toastrService.error('An error occurred');
+          });
+      }
+      else {
+        this.toastrService.error('Please log in to place order')
+        return
+      }
+    })
+
   }
 }
