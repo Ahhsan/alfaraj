@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/services/auth.service';
 import { OrderService } from 'src/app/services/order.service';
@@ -12,12 +13,14 @@ import { OrderService } from 'src/app/services/order.service';
 })
 export class MyAccountsComponent implements OnInit {
   myOrders:any;
+  selectedLang:String
   constructor(
     private order: OrderService,
     private fb: FormBuilder,
     private authService: AuthService,
     private router:Router,
-    private toastr:ToastrService
+    private toastr:ToastrService,
+    private transltion:TranslateService
   ) {
     let lg = localStorage.getItem('user');
     this.loggedInUser = JSON.parse(lg);
@@ -38,17 +41,26 @@ export class MyAccountsComponent implements OnInit {
   ordersView = true;
   userForm: FormGroup;
   ngOnInit(): void {
+    this.selectedLang = this.transltion.currentLang;
+    this.transltion.onLangChange.subscribe(lang => {
+      this.selectedLang = lang.lang;
+      if (lang.lang==="en"){
+        document.getElementsByTagName("body")[0].style.direction="ltr"
+      }
+      else {
+        document.getElementsByTagName("body")[0].style.direction="rtl"
+
+      }
+    });
     this.order
       .myOrder()
       .toPromise()
       .then((orders) => {
-        console.log('my order: ', orders);
         this.myOrders=orders;
       });
   }
   logOut() {
     this.authService.logout();
-    this.toastr.success('Logged out')
     this.router.navigate(['/home']);
   }
 }

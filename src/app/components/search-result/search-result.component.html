@@ -5,7 +5,7 @@
     <!-- START SECTION SHOP -->
     <div *ngIf='foundProds' class="section">
         <div class="container">
-            <h5 class="mb-5">Search Results...</h5>
+            <h5 [class.arabicStyle]="selectedLang=='ar'" class="mb-5">{{"general.searchResults" |translate}}</h5>
             <div class="row">
                 <div class="col-12">
                     <div class="row shop_container list">
@@ -17,21 +17,21 @@
                                     </a>
                                 </div>
                                 <div class="product_info">
-                                    <h6 class="product_title"><a class="prodName" [routerLink]="['/product-detail',prod.id]">{{prod.name}}</a></h6>
-                                   <div>
-                                    <!-- <b>{{prod.agent}}</b> -->
+                                    <h6 class="product_title"><a class="prodName" [routerLink]="['/product-detail',prod.id]">{{selectedLang==="en"?prod.name:prod.nameArabic }}</a></h6>
+                                   <div [class.arabicStyle]="selectedLang=='ar'">
+                                    <a href=""><b>{{prod.user}}</b></a>
                                    </div>
-                                    <div class="product_price">
-                                        <span class="price">{{prod.reduced | currency:'SAR '}}</span>
+                                    <div  class="product_price">
+                                        <span [class.arabicStyle]="selectedLang=='ar'" class="price">{{prod.reduced | currency:'SAR '}}</span>
                                         <del>{{prod.price | currency:'SAR '}}</del>
                                         <div class="on_sale">
                                             <span>25% Off</span>
                                         </div>
                                     </div>
-                                    <div class="pr_desc">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipi    scing elit. Phasellus blandit massa enim. Nullam id varius nunc id varius nunc.</p>
+                                    <div [class.arabicStyle]="selectedLang=='ar'" class="pr_desc">
+                                        <p>{{selectedLang==="en"?prod.shortDescription:prod.shortDescriptionArabic }}</p>
                                     </div>
-                                    <div class="list_product_action_box">
+                                    <div [class.arabicStyle]="selectedLang=='ar'" class="list_product_action_box">
                                         <ul class="list_none pr_action_btn">
                                             <li class="add-to-cart"><a (click)="addToCart(prod)" style="text-decoration: none; cursor: pointer;"><i class="icon-basket-loaded"></i> Add To Cart</a></li>
                                         </ul>
@@ -47,7 +47,7 @@
         </div>
     </div>
     <div *ngIf='foundProds'class="d-flex justify-content-center align-items-center" style="height: 500px;">
-        <h2>No Products found...</h2>
+        <h2>{{"general.noprods" | translate}}</h2>
     </div>
     <!-- END SECTION SHOP -->
     

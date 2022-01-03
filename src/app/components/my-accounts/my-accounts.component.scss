@@ -3,14 +3,19 @@
 }
 .orderStatus {
   background: var(--bs-danger);
-  color: white;
-  padding: 5px 8px;
+  color: #fff;
+  padding: 3px 7px;
   border-radius: 10px;
-  font-size: 14px;
+  font-size: 12px;
+  padding-bottom: 5px;
 }
 .completedOrder{
     background: var(--success); 
 }
 table{
     overflow: hidden;
+}
+.icons{
+
+  margin: 0px 20px;
 }

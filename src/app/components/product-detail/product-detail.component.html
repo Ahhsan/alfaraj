@@ -8,38 +8,37 @@
             <img
               id="product_img"
               [src]="prod.image"
-              data-zoom-image="prod.image"
+              data-zoom-image="https://i.imgur.com/aybxovW.jpg"
               alt="product_img1"
             />
-            <a href="#" class="product_img_zoom" title="Zoom">
-              <span class="linearicons-zoom-in"></span>
-            </a>
           </div>
         </div>
       </div>
       <div class="col-lg-6 col-md-6">
         <div class="pr_detail">
           <div class="product_description">
-            <h4 class="product_title">{{ prod.name }}</h4>
+            <h4 class="product_title">{{selectedLang==="en"?prod.name:prod.nameArabic }}</h4>
             <div class="product_price">
               <span class="price">{{ prod.reduced | currency: "SAR " }}</span>
               <del>{{ prod.price | currency: "SAR " }}</del>
               <div class="on_sale">
-                <span>35% Off</span>
+                <span>35% {{"home.off" |translate}}</span>
               </div>
             </div>
             <br>
             <div class="pr_desc mt-5 d-block">
               <p>
-                  {{prod.shortDescription}}
+                {{selectedLang==="en"?prod.shortDescription:prod.shortDescriptionArabic }}
+
               </p>
             </div>
             <br>
             <div class="product_sort_info">
               <ul>
-                <li class="p-0" *ngIf="prod.dimension"><b>Dimensions: </b>{{prod.dimension}}</li>
-                <li class="p-0" *ngIf="prod.weight"> <b>Weight: </b>{{prod.weight}} KG</li>
-                <li class="p-0" *ngIf="prod.shipping"> <b>Shipping Available: </b> <span> {{prod.shipping ? "Yes" : "No"}}</span></li>
+                <li class="prodAttrs p-0" *ngIf="prod.dimensions"><b >{{"proddetail.dimensions" | translate}} </b>{{prod.dimensions}}</li>
+                <li class="prodAttrs p-0" *ngIf="prod.weight"> <b >{{"proddetail.weight" | translate}}</b>{{prod.weight}} </li>
+                <li class="prodAttrs p-0" *ngIf="prod.shipping"> <b >{{"proddetail.ShippingAvailable" | translate}} </b> <span> {{prod.shipping ? "Yes" : "No"}}</span></li>
+                <li class="prodAttrs p-0" *ngIf="prod.color"> <b >{{"proddetail.color" | translate}} </b> <span> {{selectedLang==="en" ? prod.color: prod.colorArabic}}</span></li>
               
               </ul>
             </div>
@@ -64,16 +63,16 @@
             </div>
             <div class="cart_btn">
               <button (click)="addToCart()" class="btn btn-fill-out btn-addtocart" type="button">
-                <i class="icon-basket-loaded"></i> Add to cart
+                <i class="icon-basket-loaded"></i> {{"home.addtocart" |translate}}
               </button>
             </div>
           </div>
           <hr />
           <ul class="product-meta">
-            <li>SKU: <b> {{prod.sky}}</b></li>
-            <li>Category: <a [routerLink]="['/products-category',prod.category]">{{prod.category}}</a></li>
+            <li>{{"proddetail.sku" |translate}} <b> {{prod.sky}}</b></li>
+            <li>{{"proddetail.category" |translate}}<a [routerLink]="['/products-category',prod.category]">{{prod.category}}</a></li>
             <li>
-              Store: <a [routerLink]="['/agent',prod.user]" rel="tag">{{prod.user || "Storename"}}</a>
+              {{"proddetail.store" |translate}} <a [routerLink]="['/agent',prod.user]" rel="tag">{{prod.user || "Storename"}}</a>
             </li>
           </ul>
 
@@ -98,7 +97,7 @@
                 role="tab"
                 aria-controls="Description"
                 aria-selected="true"
-                >Description</a
+                >{{"proddetail.description" |translate}}</a
               >
             </li>
           </ul>
@@ -110,7 +109,7 @@
               aria-labelledby="Description-tab"
             >
               <p>
-                  {{prod.longDescription}}
+                  {{selectedLang==="en" ? prod.longDescription:prod.longDescriptionArabic}}
               </p>
 
             </div>
@@ -128,7 +127,7 @@
     <div class="row">
       <div class="col-12">
         <div class="heading_s1">
-          <h3>Related Products</h3>
+          <h3 [class.arabicStyle]="selectedLang==='ar'">{{"proddetail.relatedProds" |translate}}</h3>
         </div>
         <div
         class="releted_product_slider carousel_slider owl-carousel owl-theme d-flex"
@@ -149,7 +148,7 @@
                   <ul class="list_none pr_action_btn">
                     <li class="add-to-cart">
                       <a href="#"
-                        ><i class="icon-basket-loaded"></i> Add To Cart</a
+                        ><i class="icon-basket-loaded"></i> {{"home.addtocart" |translate}}</a
                       >
                     </li>
                   </ul>
@@ -157,27 +156,22 @@
               </div>
               <div class="product_info">
                 <h6 class="product_title">
-                  <a href="shop-product-detail.html">{{prod.name}}</a>
+                  <a class="relatedName relatedProdName" (click)="changeProd(related.id)">{{selectedLang==="en"?related.name:related.nameArabic }}</a>
+                  <a [routerLink]="['/agent', related.user]" class="storeName">{{related.user}}</a>
+
                 </h6>
                 <div class="product_price">
               <span class="price">{{ prod.reduced | currency: "SAR " }}</span>
               <del>{{ prod.price | currency: "SAR " }}</del>
 
                   <div class="on_sale">
-                    <span>35% Off</span>
+                    <span>35% {{"home.off" |translate}}</span>
                   </div>
                 </div>
                 <div class="pr_desc">
                   <p>
-                      {{related.short_description}}
+                    {{selectedLang==="en"?related.shortDescription:related.shortDescriptionArabic }}
                   </p>
-                </div>
-                <div class="pr_switch_wrap">
-                  <div class="product_color_switch">
-                    <span class="active" data-color="#87554B"></span>
-                    <span data-color="#333333"></span>
-                    <span data-color="#DA323F"></span>
-                  </div>
                 </div>
               </div>
             </div>

@@ -11,102 +11,109 @@
                     <div class="login_wrap">
                         <div class="padding_eight_all bg-white">
                             <div class="heading_s1">
-                                <h3>Create an Account</h3>
+                                <h3>{{"register.create" |translate}}</h3>
                             </div>
-                            <form [formGroup]="userForm">
-
+                            <form [formGroup]="userForm"> 
+                                
                                 <div class="form-group mb-3">
-                                    <b class="mb-4">Sign up as</b><br>
+                                    <b class="mb-4">{{"register.Sign up as" |translate}}</b><br>
 
-                                    <label for="customer" class="mr-2">Customer</label>
+                                    <label for="customer" class="mr-2">{{"register.Customer" | translate}}</label>
                                     <input formControlName="role" class="mr-3" name="role" value="customer" id="customer" type="radio">
 
-                                    <label class="mr-2" for="customer">Sub Agent</label>
+                                    <label class="mr-2" for="customer">{{"register.Sub Agent" | translate}}</label>
                                     <input formControlName="role" name="role" value="subagent" id="subagent" type="radio">
 
-                                    <span *ngIf="userForm.get('confirmPassword').touched && userForm.get('confirmPassword').invalid" class="text-danger">Password is required</span>
+                                    <span *ngIf="userForm.get('confirmPassword').touched && userForm.get('confirmPassword').invalid" class="text-danger">{{"general.password" | translate}} {{"register.isRequired" | translate}}</span>
                                
                                 </div>
                                 <div *ngIf="showStoreName" class="form-group mb-3">
-                                    <input formControlName="store" type="text" class="form-control" placeholder="Store">
-                                    <span *ngIf="userForm.get('store').touched && userForm.get('store').invalid" class="text-danger">Store name is required</span>
+                                    <label for="">{{"register.storeName" | translate}}</label>
+                                    
+                                    <input formControlName="store" type="text" class="form-control" >
+                                    <span *ngIf="userForm.get('store').touched && userForm.get('store').invalid" class="text-danger">{{"register.storeName" | translate}} {{"register.isRequired" | translate}}</span>
                                
                                 </div>
                                 <div class="form-group mb-3">
-                                    <input formControlName="firstName" type="text" class="form-control" placeholder="First Name">
-                                    <span *ngIf="userForm.get('firstName').touched && userForm.get('firstName').invalid" class="text-danger">First name is required</span>
+                                    <label for="">{{"register.First Name" | translate}}</label>
+                                    <input formControlName="firstName" type="text" class="form-control" >
+                                    <span *ngIf="userForm.get('firstName').touched && userForm.get('firstName').invalid" class="text-danger">{{"register.First Name" | translate}} {{"register.isRequired" | translate}}</span>
                                 </div>
                                 <div class="form-group mb-3">
-                                    <input formControlName="lastName" type="text" class="form-control" placeholder="Last Name">
-                                    <span *ngIf="userForm.get('lastName').touched && userForm.get('lastName').invalid" class="text-danger">Last name is required</span>
+                                    <label for="">{{"register.Last Name" | translate}}</label>
+
+                                    <input formControlName="lastName" type="text" class="form-control" >
+                                    <span *ngIf="userForm.get('lastName').touched && userForm.get('lastName').invalid" class="text-danger">{{"register.Last Name" | translate}} {{"register.isRequired" | translate}}</span>
                                
                                 </div>
                                 <div class="form-group mb-3">
-                                    <input formControlName="email" type="email" class="form-control" placeholder="Enter Your Email">
-                                    <span *ngIf="userForm.get('email').touched && userForm.get('email').invalid" class="text-danger">Valid email is required</span>
+                                    <label for="">{{"contactus.email" | translate}}</label>
+
+                                    <input formControlName="email" type="email" class="form-control">
+                                    <span *ngIf="userForm.get('email').touched && userForm.get('email').invalid" class="text-danger">{{"register.validEmail" | translate}} {{"register.isRequired" | translate}}</span>
                                
                                 </div>
                                 <div class="form-group mb-3">
-                                    <input formControlName="street" type="text" class="form-control" placeholder="Street">
-                                    <!-- <span *ngIf="userForm.get('street').touched && userForm.get('street').invalid" class="t8ext-danger">First name is required</span> -->
+                                    <label for="">{{"register.Street" | translate}}</label>
+                                    <input formControlName="street" type="text" class="form-control">
+                                    <!-- <span *ngIf="userForm.get('street').touched && userForm.get('street').invalid" class="t8ext-danger">First name {{"register.isRequired" | translate}}</span> -->
                                
                                 </div>
                                 <div class="form-group mb-3">
-                                    <input formControlName="postcode" type="text" class="form-control" placeholder="Post Code">
-                                    <!-- <span *ngIf="userForm.get('postcode').touched && userForm.get('postcode').invalid" class="text-danger">First name is required</span> -->
+                                    <label for="">{{"register.Postcode" | translate}}</label>
+                                    <input formControlName="postcode" type="text" class="form-control" >
+                                    <!-- <span *ngIf="userForm.get('postcode').touched && userForm.get('postcode').invalid" class="text-danger">First name {{"register.isRequired" | translate}}</span> -->
                                
                                 </div>
                                 <div class="form-group mb-3">
-                                    <input formControlName="city" type="text" class="form-control" placeholder="City">
-                                    <span *ngIf="userForm.get('city').touched && userForm.get('city').invalid" class="text-danger">City is required</span>
+                                    <label for="">{{"register.city" | translate}}</label>
+                                    <input formControlName="city" type="text" class="form-control" >
+                                    <span *ngIf="userForm.get('city').touched && userForm.get('city').invalid" class="text-danger">City {{"register.isRequired" | translate}}</span>
                                
                                 </div>
                                 <div class="form-group mb-3">
-                                    <input formControlName="country" type="text" class="form-control" placeholder="Country">
-                                    <span *ngIf="userForm.get('country').touched && userForm.get('country').invalid" class="text-danger">Country is required</span>
+                                    <label for="">{{"register.country" | translate}}</label>
+                                
+                                    <input formControlName="country" type="text" class="form-control">
+                                    <span *ngIf="userForm.get('country').touched && userForm.get('country').invalid" class="text-danger">Country {{"register.isRequired" | translate}}</span>
                                
                                 </div>
                                 <div class="form-group mb-3">
-                                    <input formControlName="phone" type="number" class="form-control" placeholder="Phone">
+                                    <label for="">{{"contactus.phone" | translate}}</label>
+                                    <input formControlName="phone" type="number" class="form-control" >
                                
-                                    <span *ngIf="userForm.get('phone').touched && userForm.get('phone').invalid" class="text-danger">Phone is required</span>
-                                </div>
-                                <div class="form-group mb-3">
-                                    <input formControlName="userName" type="text" class="form-control" placeholder="Username">
-                                    <span *ngIf="userForm.get('userName').touched && userForm.get('userName').invalid" class="text-danger">Uername is required</span>
-                               
+                                    <span *ngIf="userForm.get('phone').touched && userForm.get('phone').invalid" class="text-danger">{{"contactus.phone" | translate}} {{"register.isRequired" | translate}}</span>
                                 </div>
                         
                                 <div class="form-group mb-3">
-                                    <input class="form-control" formControlName="password" required="" type="password" name="password" placeholder="Password">
-                                    <span *ngIf="userForm.get('password').touched && userForm.get('password').invalid" class="text-danger">Password is required</span>
+                                    <label for="">{{"general.password" | translate}}</label>
+                                    <input class="form-control" formControlName="password" required="" type="password" name="password" >
+                                    <span *ngIf="userForm.get('password').touched && userForm.get('password').invalid" class="text-danger">{{"general.password" | translate}} {{"register.isRequired" | translate}}</span>
                                
                                 </div>
                                 <div class="form-group mb-3">
-                                    <input class="form-control" formControlName="confirmPassword" required="" type="password" name="password" placeholder="Confirm Password">
-                                    <span *ngIf="userForm.get('confirmPassword').touched && userForm.get('confirmPassword').invalid" class="text-danger">Password is required</span>
-                               
+                                    <label for="">{{"register.Confirm Password" | translate}}</label>
+                                    <input class="form-control" formControlName="confirmPassword" required="" type="password" name="password" >
+                                    <span *ngIf="userForm.get('confirmPassword').touched && userForm.get('confirmPassword').invalid" class="text-danger">{{"general.password" | translate}} {{"register.isRequired" | translate}}</span>
+                            
                                 </div>
 
 
 
-                                <!-- <div *ngIf="showStoreName" class="form-group mb-3">
-                                    <input class="form-control" formControlName="store" required="" type="text" name="store" placeholder="Store Name">                               
-                                </div> -->
                                 
                                 <div class="login_footer form-group mb-3">
                                     <div class="chek-form">
                                         <div class="custome-checkbox">
-                                            <input class="form-check-input" type="checkbox" name="checkbox" id="exampleCheckbox2" value="">
-                                            <label class="form-check-label" for="exampleCheckbox2"><span>I agree to terms &amp; Policy.</span></label>
+                                            <input class="form-check-input" formControlName="agreeToTerms" type="checkbox" name="checkbox" id="exampleCheckbox2" value="">
+                                            <label class="form-check-label" for="exampleCheckbox2"><span>{{"register.terms" | translate}}</span></label>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="form-group mb-3">
-                                    <button type="submit" class="btn btn-fill-out btn-block" (click)="onRegister()" name="register">Register</button>
+                                    <button type="submit" class="btn btn-fill-out btn-block" (click)="onRegister()" name="register">{{"register.register" | translate}}</button>
                                 </div>
                             </form>
-                            <div class="form-note text-center">Already have an account? <a routerLink="/login">Log in</a></div>
+                            <div class="form-note text-center">{{"register.already" | translate}}<a routerLink="/login">{{"general.Login" | translate}}</a></div>
                         </div>
                     </div>
                 </div>
@@ -115,27 +122,6 @@
     </div>
     <!-- END LOGIN SECTION -->
     
-    <!-- START SECTION SUBSCRIBE NEWSLETTER -->
-    <div class="section bg_default small_pt small_pb">
-        <div class="container">	
-            <div class="row align-items-center">	
-                <div class="col-md-6">
-                    <div class="heading_s1 mb-md-0 heading_light">
-                        <h3>Subscribe Our Newsletter</h3>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="newsletter_form">
-                        <form>
-                            <input type="text" required="" class="form-control rounded-0" placeholder="Enter Email Address">
-                            <button type="submit" class="btn btn-dark rounded-0" name="submit" value="Submit">Subscribe</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- START SECTION SUBSCRIBE NEWSLETTER -->
     
     </div>
     <!-- END MAIN CONTENT -->

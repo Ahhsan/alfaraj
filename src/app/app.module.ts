@@ -18,11 +18,18 @@ import { CheckoutComponent } from './components/checkout/checkout.component';
 import { CartComponent } from './components/cart/cart.component';
 import { ContactUsComponent } from './components/contact-us/contact-us.component';
 import { AboutUsComponent } from './components/about-us/about-us.component';
+import { HttpClient,  } from '@angular/common/http';
+
 import { TokenInterceptorService } from './services/token-interceptor.service';
 import { SearchResultComponent } from './components/search-result/search-result.component';
 import { ProductsComponent } from './components/products/products.component';
 import { CategoryComponent } from './components/category/category.component';
 
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+export function createTranslateLoader(http: HttpClient) {
+  return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
+}
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,6 +58,14 @@ import { CategoryComponent } from './components/category/category.component';
     HttpClientModule,
     ReactiveFormsModule,
     ToastrModule.forRoot(),
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: (createTranslateLoader),
+        deps: [HttpClient]
+      },
+      defaultLanguage: 'en'
+    }),
     BrowserAnimationsModule,
   ],
   providers: [

@@ -2435,7 +2435,7 @@ input.text {
 #navCatContent li a i {
 	font-size: 22px;
 	vertical-align: middle;
-	margin-right: 10px;
+	margin: 0px 10px;
 	line-height: 30px;
 }
 #navCatContent li a span {

@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { CartService } from 'src/app/services/cart.service';
 import { ProductService } from 'src/app/services/product.service';
@@ -12,16 +13,19 @@ import { SpinnerService } from 'src/app/services/spinner.service';
 })
 export class HeaderComponent implements OnInit {
   prodToSearch = '';
+  categories:any;
   grandTotal: number;
+  selectedLang:String
   cartItemCount: number;
-  @Input() showCats='';
-  @Input() showLogo:boolean=true;
+  @Input() showCats:boolean=false;
+
   constructor(
     private cartService: CartService,
     private productService: ProductService,
     private router: Router,
     private spinner: SpinnerService,
-    private authService: AuthService
+    private authService: AuthService,
+    private transltion:TranslateService,
   ) {
     cartService.cartItemCount.subscribe((items) => {
       this.cartItemCount = items;
@@ -29,22 +33,29 @@ export class HeaderComponent implements OnInit {
     cartService.totalPayableAmount.subscribe((amount) => {
       this.grandTotal = amount;
     });
+    this.productService.getAllCats().then(cats=>{
+      this.categories=cats;
+      
+    })
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+
+    this.selectedLang = this.transltion.currentLang;
+    this.transltion.onLangChange.subscribe(lang => {
+      this.selectedLang = lang.lang;
+    });
+  }
   searchProd() {
-    // this.spinner.showSpinner();
-    console.log('searching...');
     this.productService
       .searchProduct(this.prodToSearch).toPromise()
       .then((resp) => {
-        console.log('found prods: ', resp);
         this.productService.setFoundProds(resp);
         this.spinner.hideSpinner();
         this.router.navigate(['/search-result']);
       })
       .catch((error) => {
-        // this.spinner.hideSpinner();
+
       });
   }
   onClickuser() {
@@ -55,5 +66,10 @@ export class HeaderComponent implements OnInit {
         this.router.navigate(['/login']);
       }
     });
+  }
+  changeLang(langName){
+    this.transltion.use(langName);
+    console.log('change to lang: ',langName);
+    
   }
 }

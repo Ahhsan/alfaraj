@@ -10,23 +10,29 @@
                 ><img class="logo_dark" src="../../../assets/logo.png" alt="logo"
               /></a>
             </div>
-            <p>"الوجهة الأولى لقطاع الاعمال للأجهزة الكهربائية والإلكترونية"</p>
+            <p>{{"footer.slogan" |translate}}</p>
           </div>
           <div class="widget">
             <ul class="social_icons social_white">
               <li>
                 <a
-                  href="https://www.facebook.com/saudifaraj/?view_public_for=114207116698131"
+                  
+                target="blank"
+                href="https://www.facebook.com/saudifaraj/?view_public_for=114207116698131"
                   ><i class="ion-social-facebook"></i
                 ></a>
               </li>
               <li>
-                <a href="https://twitter.com/SaudiFaraj"
+                <a
+                target="blank" 
+                href="https://twitter.com/SaudiFaraj"
                   ><i class="ion-social-twitter"></i
                 ></a>
               </li>
               <li>
-                <a href="https://www.instagram.com/saudifaraj/ "
+                <a
+                target="blank" 
+                href="https://www.instagram.com/saudifaraj/ "
                   ><i class="ion-social-instagram-outline"></i
                 ></a>
               </li>
@@ -35,31 +41,25 @@
         </div>
         <div class="col-lg-3 col-md-3 col-sm-6">
           <div class="widget">
-            <h6 class="widget_title">Useful Links</h6>
+            <h6 class="widget_title">{{"footer.useful" |translate}}</h6>
             <ul class="widget_links">
-              <li><a href="#">About Us</a></li>
-              <li><a href="#">FAQ</a></li>
-              <li><a href="#">Location</a></li>
-              <li><a href="#">Affiliates</a></li>
-              <li><a href="#">Contact</a></li>
+              <li><a routerLink="/about-us"> {{"footer.about" |translate}}</a></li>
+              <li><a routerLink="/contact-us" >{{"footer.contact" |translate}}</a></li>
             </ul>
           </div>
         </div>
         <div class="col-lg-3 col-md-6 col-sm-6">
           <div class="widget">
-            <h6 class="widget_title">My Account</h6>
+            <h6 class="widget_title">{{"footer.myAccount" |translate}}</h6>
             <ul class="widget_links">
-              <li><a href="#">My Account</a></li>
-              <li><a href="#">Discount</a></li>
-              <li><a href="#">Returns</a></li>
-              <li><a href="#">Orders History</a></li>
-              <li><a href="#">Order Tracking</a></li>
+              <li><a routerLink="/my-account">{{"footer.myAccount" |translate}}</a></li>
+              <li><a routerLink="/my-account">{{"footer.orderTracking" |translate}}</a></li>
             </ul>
           </div>
         </div>
         <div class="col-lg-3 col-md-4 col-sm-6">
           <div class="widget">
-            <h6 class="widget_title">Contact Info</h6>
+            <h6 class="widget_title">{{"footer.contactInfo" |translate}}</h6>
             <ul class="contact_info contact_info_light">
               <li>
                 <i class="ti-location-pin"></i>

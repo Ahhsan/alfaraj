@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -10,14 +11,16 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class RegisterComponent implements OnInit {
   userForm: FormGroup;
+  selectedLang
   showStoreName = false;
   constructor(
     private auth: AuthService,
     fb: FormBuilder,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private transltion:TranslateService
   ) {
     this.userForm = fb.group({
-      role: [''],
+      role: ['customer'],
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       email: ['', Validators.email],
@@ -29,39 +32,66 @@ export class RegisterComponent implements OnInit {
       country: ['', Validators.required],
       phone: ['', Validators.required],
       store: [''],
-      userName: ['', Validators.required],
+      agreeToTerms:[false],
     });
   }
 
   ngOnInit(): void {
+    
+
     this.userForm.valueChanges.subscribe((value) => {
-      console.log('Value: ', value);
+      console.log(value);
+      
       if (value.role === 'subagent') {
         this.showStoreName = true;
       } else {
         this.showStoreName = false;
       }
     });
+
+    this.selectedLang = this.transltion.currentLang;
+    this.transltion.onLangChange.subscribe(lang => {
+      this.selectedLang = lang.lang;
+    });
   }
   onRegister() {
+    console.log(this.userForm.value);
+
     if (!this.userForm.valid){
-      this.toastr.error('Please fill all the mandatory fields');
+      this.toastr.error( this.selectedLang==='en' ?  'Please fill all the mandatory fields' :'يرجى ملء جميع الحقول الإلزامية');
       return;
 
     }
-    delete this.userForm.value.userName;
+
+    if (this.userForm.value.password!==this.userForm.value.confirmPassword){
+      this.toastr.error(this.selectedLang==='en' ? 'Password does not match' :'كلمة السر غير متطابقة');
+
+      return;
+    }
+    
+    if (this.userForm.value.role==="subagent" && this.userForm.value.store===""){
+      this.toastr.error(this.selectedLang==='en' ? 'Please enter storename':'الرجاء إدخال اسم المتجر');
+      return;
+    }
+    
+    if (!this.userForm.value.agreeToTerms){
+      this.toastr.error(this.selectedLang==='en' ? 'Please agree to terms':'الرجاء الموافقة على الشروط');
+      return;
+    }
+    // if (this.userForm.value.role==="customer"){
+    // }
+    delete this.userForm.value.store
     delete this.userForm.value.confirmPassword;
+    
     this.auth
       .register(this.userForm.value)
       .toPromise()
       .then((resp) => {
-        console.log('register resp: ', resp);
-        this.toastr.success('Registered');
+        this.toastr.success(this.selectedLang==='en' ? 'Registered':'مسجل');
         this.userForm.reset();
       })
       .catch((error) => {
-        this.toastr.error('Error occurred while registering');
-        console.log('Error: ', error);
+        this.toastr.error(this.selectedLang==='en' ? 'Error occurred while registering':"حدث خطأ أثناء التسجيل");
       });
   }
 }

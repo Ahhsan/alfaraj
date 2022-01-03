@@ -1,4 +1,4 @@
-<app-header [showLogo]=false></app-header>
+<app-header></app-header>
 <div class="main_content">
 
     <!-- START SECTION CONTACT -->
@@ -11,7 +11,7 @@
                             <i class="linearicons-map2"></i> 
                         </div>
                         <div class="contact_text">
-                            <span>Address</span>
+                            <span>{{"contactus.adderss"|translate}}</span>
                             <p>
                                 7642 احمد المجاهد - حي الروضة وحدة رقم 75 جدة 23433 - 3927
                                 المملكة العربية السعودية
@@ -25,7 +25,7 @@
                             <i class="linearicons-envelope-open"></i>
                         </div>
                         <div class="contact_text">
-                            <span>Email Address</span>
+                            <span>{{"contactus.emailAddress"|translate}}</span>
                 <a href="mailto:info@faraj.sa">info@faraj.sa</a>
 
                         </div>
@@ -37,7 +37,7 @@
                             <i class="linearicons-tablet2"></i>
                         </div>
                         <div class="contact_text">
-                            <span>Phone</span>
+                            <span>{{"contactus.phone"|translate}}</span>
                 <p>+966 54 036 3034⁩</p>
 
                         </div>
@@ -54,29 +54,29 @@
             <div class="row">
                 <div class="col-lg-6">
                     <div class="heading_s1">
-                        <h2>Get In touch</h2>
+                        <h2>{{"contactus.intouch"|translate}}</h2>
                     </div>
-                    <p class="leads">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus blandit massa enim. Nullam id varius nunc id varius nunc.</p>
+                    <p class="leads">{{"about.lorem3" | translate}}</p>
                     <div class="field_form">
                         <form [formGroup]="contactForm">
                             <div class="row">
                                 <div class="form-group col-md-6">
-                                    <input formControlName="name" placeholder="Enter Name *" id="first-name" class="form-control" name="name" type="text">
+                                    <input formControlName="name" placeholder="{{'contactus.name' | translate}}" id="first-name" class="form-control" name="name" type="text">
                                  </div>
                                 <div class="form-group col-md-6">
-                                    <input formControlName="email" placeholder="Enter Email *" id="email" class="form-control" name="email" type="email">
+                                    <input formControlName="email" placeholder="{{'contactus.email' | translate}}" id="email" class="form-control" name="email" type="email">
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <input formControlName="phone" placeholder="Enter Phone No. *" id="phone" class="form-control" name="phone">
+                                    <input formControlName="phone" placeholder="{{'contactus.phone' | translate}}" id="phone" class="form-control" name="phone">
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <input formControlName="subject" placeholder="Enter Subject" id="subject" class="form-control" name="subject">
+                                    <input formControlName="subject" placeholder="{{'contactus.subject' | translate}}" id="subject" class="form-control" name="subject">
                                 </div>
                                 <div class="form-group col-md-12">
-                                    <textarea formControlName="message" placeholder="Message *" id="description" class="form-control" name="message" rows="4"></textarea>
+                                    <textarea formControlName="message" placeholder="{{'contactus.message' | translate}} *" id="description" class="form-control" name="message" rows="4"></textarea>
                                 </div>
                                 <div class="col-md-12">
-                                    <button (click)="sendForm()" type="submit" title="Submit Your Message!" class="btn btn-fill-out" id="submitButton" name="submit" value="Submit">Send Message</button>
+                                    <button (click)="sendForm()" type="submit" title="Submit Your Message!" class="btn btn-fill-out" id="submitButton" name="submit" value="Submit">{{"contactus.sendMessage" | translate}}</button>
                                 </div>
                             </div>
                         </form>		

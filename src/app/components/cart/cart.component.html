@@ -12,17 +12,17 @@
                             <thead>
                                 <tr>
                                     <th class="product-thumbnail">&nbsp;</th>
-                                    <th class="product-name">Product</th>
-                                    <th class="product-price">Price</th>
-                                    <th class="product-quantity">Quantity</th>
-                                    <th class="product-subtotal">Total</th>
-                                    <th class="product-remove">Remove</th>
+                                    <th class="product-name">{{"cart.Product" |translate}}</th>
+                                    <th class="product-price">{{"cart.Price" |translate}}</th>
+                                    <th class="product-quantity">{{"cart.Quantity" |translate}}</th>
+                                    <th class="product-subtotal">{{"cart.Total" |translate}}</th>
+                                    <th class="product-remove">{{"cart.remove" |translate}}</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr *ngFor="let prod of cartItems">
                                     <td class="product-thumbnail"><a href="#"><img [src]="prod.image" alt="product1"></a></td>
-                                    <td class="product-name" data-title="Product"><a href="#">{{prod.name}}</a></td>
+                                    <td class="product-name" data-title="Product"><a [routerLink]="['/product-detail',prod.id]">{{selectedLang==="en"?prod.name:prod.nameArabic }}</a></td>
                                     <td class="product-price" data-title="Price">{{prod.reduced}}</td>
                                     <td class="product-quantity" data-title="Quantity"><div class="quantity">
                                     <input type="button" (click)="decreaseQty(prod.id)" value="-" class="minus">
@@ -48,36 +48,37 @@
                 <div class="col-md-6">
                 </div>
                 <div class="col-md-6">
+                    
                     <div class="border p-3 p-md-4">
                         <div class="heading_s1 mb-3">
-                            <h6>Cart Totals</h6>
+                            <h6>{{"cart.Cart Totals" |translate}}</h6>
                         </div>
                         <div class="table-responsive">
                             <table class="table">
                                 <tbody>
                                     <tr>
-                                        <td class="cart_total_label">Cart Subtotal</td>
+                                        <td class="cart_total_label">{{"cart.Cart Subtotal" |translate}}</td>
                                         <td class="cart_total_amount">{{grandTotal | currency:'SAR '}}</td>
                                     </tr>
                                     <tr>
-                                        <td class="cart_total_label">Shipping</td>
-                                        <td class="cart_total_amount">Free Shipping</td>
+                                        <td class="cart_total_label">{{"cart.shipping" |translate}}</td>
+                                        <td class="cart_total_amount">{{"cart.freeShipping" |translate}}</td>
                                     </tr>
                                     <tr>
-                                        <td class="cart_total_label">Total</td>
+                                        <td class="cart_total_label">{{"cart.Total" |translate}}</td>
                                         <td class="cart_total_amount"><strong>{{grandTotal | currency:'SAR '}}</strong></td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
-                        <a routerLink="/checkout" class="btn btn-fill-out">Proceed To CheckOut</a>
+                        <a routerLink="/checkout" class="btn btn-fill-out">{{"cart.Proceed To CheckOut" |translate}}</a>
                     </div>
                 </div>
             </div>
         </div>
         <div *ngIf="cartItems.length === 0">
             <div class="noItems">
-              <p class="text-center noItemsMsg">You don't have any items in your cart</p>
+              <p class="text-center noItemsMsg">{{"cart.noItems" |translate}}</p>
             </div>
           </div>
     </div>

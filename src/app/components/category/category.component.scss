@@ -1,0 +1,15 @@
+.noItemsMsg {
+    font-size: 2rem;
+    max-width: 80%;
+    line-height: 1.2;
+  }
+  .noItems{
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .shortDesc{
+    max-height: 58px;
+    overflow: hidden;
+  }

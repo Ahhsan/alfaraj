@@ -1,3 +1,26 @@
-.logo_dark{
-    width: 100px;
+.logo_dark {
+  width: 100px;
+}
+
+.langIcon {
+  width: 28px;
+  border-radius: 4px;
+  display: block;
+  height: 18px;
+  object-fit: cover;
+  margin-left: 1rem;
+}
+.langLabel {
+  font-size: 14px;
+  margin-left: 6px;
+  margin-left: 1.3rem;
+}
+.langLi {
+  cursor: pointer;
+}
+.navbar {
+  justify-content: center !important;
+}
+.searchBarAr{
+  flex-direction: row-reverse;
 }

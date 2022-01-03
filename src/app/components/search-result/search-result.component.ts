@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import { CartService } from 'src/app/services/cart.service';
 import { ProductService } from 'src/app/services/product.service';
 
@@ -9,15 +10,27 @@ import { ProductService } from 'src/app/services/product.service';
 })
 export class SearchResultComponent implements OnInit {
   foundProds;
+  selectedLang:String
   constructor(
     private prods: ProductService,
+    private transltion:TranslateService,
     private cartService: CartService
   ) {}
 
   ngOnInit(): void {
+    this.selectedLang = this.transltion.currentLang;
+    this.transltion.onLangChange.subscribe(lang => {
+      this.selectedLang = lang.lang;
+      if (lang.lang==="en"){
+        document.getElementsByTagName("body")[0].style.direction="ltr"
+      }
+      else {
+        document.getElementsByTagName("body")[0].style.direction="rtl"
+
+      }
+    });
     this.prods.foundProds.subscribe((prods) => {
       this.foundProds = prods?.products;
-      console.log('found prods: ',this.foundProds);
       
     });
   }

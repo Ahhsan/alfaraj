@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
 import { BehaviorSubject } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -10,15 +11,27 @@ import { CartService } from './cart.service';
 })
 export class AuthService {
   loggedUser = new BehaviorSubject(null);
-  constructor(private http: HttpClient, private toastr:ToastrService, private cartService:CartService) {
+  cats= new BehaviorSubject([]);
+  selectedLang;
+  constructor(
+    private http: HttpClient,
+    private toastr: ToastrService,
+    private cartService: CartService,
+    private translateService:TranslateService
+  ) {
+
     this.checkLogin();
+    this.selectedLang = translateService.currentLang;
+    translateService.onLangChange.subscribe(resp => {
+      this.selectedLang = resp.lang;
+    });
+  
   }
 
   logout() {
-    console.log('logginf out');
     this.loggedUser.next(null);
     localStorage.clear();
-    this.toastr.success('Logged out');
+    this.toastr.success(this.selectedLang==='en' ? 'Logged out':'تسجيل الخروج');
     this.cartService.makeCartEmpty();
   }
   register(data: any) {
@@ -30,19 +43,17 @@ export class AuthService {
   sendContactForm(form) {
     return this.http.post(environment.baseurl + '/contact', form);
   }
-  checkLogin():Promise<boolean> {
+  checkLogin(): Promise<boolean> {
     return new Promise((resolve, reject) => {
       let loggedUsr = localStorage.getItem('user');
       if (loggedUsr) {
         this.loggedUser.next(JSON.parse(loggedUsr));
-        console.log('logged in');
-        resolve(true)
+        resolve(true);
       } else {
         this.loggedUser.next(JSON.parse(null));
-        console.log('not logged in');
-        resolve(false)
-
+        resolve(false);
       }
     });
   }
+  
 }

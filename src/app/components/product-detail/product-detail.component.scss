@@ -6,3 +6,14 @@
     display: grid;
     grid-template-columns: 30% 1fr;
 }
+.prodAttrs{
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+}
+.relatedName{
+    color: var(--blue);
+    cursor: pointer;
+}
+del{
+   margin: 0px 10px; 
+}

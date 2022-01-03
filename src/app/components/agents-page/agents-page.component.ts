@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { CartService } from 'src/app/services/cart.service';
 import { ProductService } from 'src/app/services/product.service';
 
@@ -13,10 +14,12 @@ export class AgentsPageComponent implements OnInit {
   cartItemCount: number;
   grandTotal: number;
   storeName:any
+  selectedLang:String
   constructor(
     private products: ProductService,
     private cartService: CartService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private transltion:TranslateService
   ) {
     cartService.totalPayableAmount.subscribe((amount) => {
       this.grandTotal = amount;
@@ -26,11 +29,21 @@ export class AgentsPageComponent implements OnInit {
     });
   }
   ngOnInit(): void {
+    this.selectedLang = this.transltion.currentLang;
+    this.transltion.onLangChange.subscribe(lang => {
+      this.selectedLang = lang.lang;
+      if (lang.lang==="en"){
+        document.getElementsByTagName("body")[0].style.direction="ltr"
+      }
+      else {
+        document.getElementsByTagName("body")[0].style.direction="rtl"
+
+      }
+    });
     this.storeName=this.route.snapshot.params.id
     this.products
       .getStoreProds(this.route.snapshot.params.id)
       .subscribe((prods) => {
-        console.log('All prods: ', prods);
         this.allProds = prods;
       });
   }

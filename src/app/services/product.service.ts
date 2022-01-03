@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+
 import { ToastrService } from 'ngx-toastr';
 import { BehaviorSubject, of } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -10,6 +11,7 @@ import { environment } from 'src/environments/environment';
 export class ProductService {
   allProds = new BehaviorSubject(undefined);
   foundProds = new BehaviorSubject(undefined);
+  cats= new BehaviorSubject([]);
   constructor(private http:HttpClient, private toastr: ToastrService) {
     this.getProducts().then().catch();
   }
@@ -17,10 +19,9 @@ export class ProductService {
     // this.allProds.next(dummy_prods.slice(0,6))
     return new Promise((resolve, reject) => {
       this.http
-        .get(environment.baseurl + '/products/role/agent')
+        .get(environment.baseurl + '/products/role/subagent')
         .toPromise()
         .then((resp: any) => {
-          console.log('All prods next: ', resp);
 
           this.allProds.next(resp);
           // resolve(resp);
@@ -60,10 +61,22 @@ export class ProductService {
     return this.http.get(environment.baseurl + `/products/store/${storeName}`);
   }
   getAllCats() {
-    return this.http.get(environment.baseurl + '/categories');
+    let allCats=this.cats.value;
+    if (allCats.length>0){
+      return new Promise((resolve,reject)=>{
+        resolve(allCats);
+
+      })
+    }
+    else {      
+      return this.http.get(environment.baseurl + '/categories').toPromise();
+    }
   }
-  getProdsByCat(catId: String) {
-    return this.http.get(environment.baseurl + '/products/role/agent');
+  getProdsByCat(catName: String) {
+    return this.http.get(environment.baseurl + '/categories/'+catName);
+  }
+  setCats(cats){
+    this.cats.next(cats);
   }
 }
 

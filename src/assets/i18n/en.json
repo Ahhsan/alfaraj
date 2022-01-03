@@ -1,0 +1,126 @@
+{
+  "header": {
+    "home": "home",
+    "products": "products",
+    "aboutus": "About us",
+    "contactus": "Contact Us",
+    "allcats": "All Categories"
+  },
+  "home": {
+    "trendingProds": "Tending Products",
+    "newProds": "Newly Added Products",
+    "iphone": "iPhone Collection",
+    "laptop": "Branded Wristwatches",
+    "off": "Off",
+    "addtocart": "Add to cart",
+    "lapto1p": "cvalue"
+  },
+  "about": {
+    "whoweare": "Who we are",
+    "whyus": "Why Choose Us ?",
+    "Creative Design": "Creative Design",
+    "Flexible Layouts": "Flexible Layouts",
+    "Email Marketing": "Email Marketing",
+    "Free Delivery": "Free Delivery",
+    "30 Day Return": "30 Day Return",
+    "27/4 Support": "27/4 Support",
+    "lorem3": "If you are going to use of Lorem, you need to be sure there anything",
+    "lorem1": "Lorem ipsum dolor sit amet consectetur adipisicing elit. consequuntur quibusdam enim expedita sed nesciunt incidunt accusamus adipisci officia libero laboriosam!",
+    "lorem2": "Proin gravida nibh vel velit auctor aliquet. nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vultate cursus a sit amet mauris. Duis sed odio sit amet nibh vultate cursus a sit amet mauris."
+  },
+  "contactus": {
+    "adderss": "Adderss",
+    "emailAddress": "Email Address",
+    "phone": "Phone",
+    "intouch": "Get In Touch",
+    "sendMessage": "Send Message",
+    "name": "Name",
+    "email": "Email",
+    "subject": "Subject",
+    "message": "Message"
+  },
+  "proddetail": {
+    "dimensions": "Dimensions",
+    "weight": "Weight (KGs)",
+    "ShippingAvailable": "Shipping Available",
+    "description": "Description",
+    "sku": "SKU",
+    "category": "category",
+    "store": "Store",
+    "color":"Color",
+    "relatedProds": "Related Products"
+  },
+  "category":{
+      "noProds":"No products found in this category"
+  },
+  "general": {
+    "searchproduct": "Search Product",
+    "Login":"Login",
+    "password":"Password",
+    "noAccount":"Don't Have an Account? ",
+    "signUp":"Sign up now",
+    "searchResults":"Search Results...",
+    "noprods":">No Products found..."
+  },
+  "register":{
+      "create":"Create an Account",
+      "Sign up as":"Sign up as",
+      "Customer":"Customer",
+      "Sub Agent":"Sub Agent",
+      "First Name":"First Name",
+      "Last Name":"Last Name",
+      "Street":"Street",
+      "Postcode":"Postcode",
+      "city":"City",
+      "country":"Country",
+      "Confirm Password":"Confirm Password",
+      "terms":"I agree to terms & Policy ",
+      "register":"Register",
+      "already":"Already have an account?",
+      "isRequired":"is required",
+      "storeName":"Store Name",
+      "validEmail":"Valid Email"
+  },
+  "cart":{
+      "noItems":"You don't have any items in your cart",
+      "Product":"Product",
+      "Price":"Price",
+      "Quantity":"Quantity",
+      "Total":"Total",
+      "remove":"Remove",
+      "Cart Totals":"Cart Totals",
+      "Cart Subtotal":"Cart Subtotal",
+      "freeShipping":"Free Shipping",
+      "shipping":"Shipping",
+      "Proceed To CheckOut":"Proceed To CheckOut"
+  },
+  "checkout":{
+      "billing":"Billing Details",
+      "items":"Items",
+      "product":"Product",
+      "payment":"Payment",
+      "subtotal":"Sub Total",
+      "placeOrder":"Place Order",
+      "manually":"Payment is made manually through Admin"
+      
+  },
+  "myaccount":{
+      "orders":"Orders",
+      "orderCode":"Order Code",
+      "date":"Date",
+      "accountDetails":"Account Details",
+      "total":"Total",
+      "status":"Status",
+      "orderno":"Order #: ",
+      "logout":"Logout"
+  },
+  "footer":{
+      "useful":"Useful Links",
+      "about":"About Us",
+      "contact":"Contact",
+      "myAccount":"My Account",
+      "contactInfo":"Contact Info",
+      "orderTracking":"Order Tracking",
+      "slogan":"The first destination for the business sector for electrical and electronic devices"
+  }
+}

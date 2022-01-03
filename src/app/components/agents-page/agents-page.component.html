@@ -4,8 +4,13 @@
 
     <!-- START SECTION SHOP -->
     <div class="section">
-        <h3 class="storeName mb-3">{{storeName}} 's Products</h3>
+        
         <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-4 col-6">
+                    <h3 [class.arabicStyle]="selectedLang==='ar'" class="text-danger mb-4">{{storeName}}</h3>
+                </div>
+            </div>
             <div class="row">
                 <div class="col-12">
                     <div class="row shop_container list">
@@ -17,23 +22,23 @@
                                     </a>
                                 </div>
                                 <div class="product_info">
-                                    <h6 class="product_title"><a class="prodName" [routerLink]="['/product-detail',prod.id]">{{prod.name}}</a></h6>
+                                    <h6 class="product_title"><a class="prodName" [routerLink]="['/product-detail',prod.id]">{{selectedLang==="en"?prod.name:prod.nameArabic }}</a></h6>
                                    <div>
                                     <!-- <b>{{prod.agent}}</b> -->
                                    </div>
-                                    <div class="product_price">
-                                        <span class="price">{{prod.reduced | currency:'SAR '}}</span>
+                                    <div [class.arabicStyle]="selectedLang==='ar'" class="product_prie">
+                                        <span  class="price">{{prod.reduced | currency:'SAR '}}</span>
                                         <del>{{prod.price | currency:'SAR '}}</del>
                                         <div class="on_sale">
-                                            <span>25% Off</span>
+                                            <span>25% {{"home.off" |translate}}</span>
                                         </div>
                                     </div>
-                                    <div class="pr_desc">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipi    scing elit. Phasellus blandit massa enim. Nullam id varius nunc id varius nunc.</p>
+                                    <div [class.arabicStyle]="selectedLang==='ar'" class="pr_desc">
+                                        <p>{{selectedLang==="en"?prod.shortDescription:prod.shortDescriptionArabic }}</p>
                                     </div>
-                                    <div class="list_product_action_box">
+                                    <div [class.arabicStyle]="selectedLang==='ar'" class="list_product_action_box">
                                         <ul class="list_none pr_action_btn">
-                                            <li class="add-to-cart"><a (click)="addToCart(prod)" style="text-decoration: none; cursor: pointer;"><i class="icon-basket-loaded"></i> Add To Cart</a></li>
+                                            <li class="add-to-cart"><a (click)="addToCart(prod)" style="text-decoration: none; cursor: pointer;"><i class="icon-basket-loaded"></i> {{"home.addtocart"|translate}}</a></li>
                                         </ul>
                                     </div>
                                 </div>

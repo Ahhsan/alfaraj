@@ -20,15 +20,13 @@ export class TokenInterceptorService {
     request: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    // this.spinner.showSpinner();
+    this.spinner.showSpinner();
     if (request.url === environment.baseurl + '/login') {
       return next.handle(request).pipe((response:  Observable<HttpEvent<any>>) => {
         response.toPromise().then(resp=>{
-          console.log('resp: ',resp);
         this.spinner.hideSpinner();
           
         }).catch(error=>{
-          console.log('error ',error);
           this.spinner.hideSpinner();
 
         })

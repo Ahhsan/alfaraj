@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
+import { AppComponent } from 'src/app/app.component';
 import { AuthService } from 'src/app/services/auth.service';
 import { CartService } from 'src/app/services/cart.service';
 import { ProductService } from 'src/app/services/product.service';
@@ -11,46 +13,56 @@ import { SpinnerService } from 'src/app/services/spinner.service';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
+
   allProds = [];
   prodToSearch = '';
   cartItemCount: number;
   grandTotal: number;
   categories:any;
+  selectedLang:String;
   constructor(
     private products: ProductService,
     private cartService: CartService,
     private router: Router,
     private spinner: SpinnerService,
+    public transltion:TranslateService,
     private authService:AuthService
   ) {
+    // super();
     cartService.totalPayableAmount.subscribe((amount) => {
       this.grandTotal = amount;
     });
     cartService.cartItemCount.subscribe((items) => {
       this.cartItemCount = items;
     });
-    this.products.getAllCats().toPromise().then(cats=>{
+    this.products.getAllCats().then(cats=>{
       this.categories=cats;
-     
-      
+      this.products.setCats(cats);
     })
   }
   ngOnInit(): void {
     this.products.allProds.subscribe((prods) => {
-      console.log('All prods: ', prods);
       this.allProds = prods;
     });
-    // this.loadScript('assets/owlcarousel/js/owl.carousel.min.js');
+    this.selectedLang = this.transltion.currentLang;
+    this.transltion.onLangChange.subscribe(lang => {
+      this.selectedLang = lang.lang;
+      if (lang.lang==="en"){
+        document.getElementsByTagName("body")[0].style.direction="ltr"
+      }
+      else {
+        document.getElementsByTagName("body")[0].style.direction="rtl"
+
+      }
+    });
   }
   addToCart(prod) {
     this.cartService.addToCart(prod);
   }
   searchProd() {
-    console.log('searching...');
     this.products
       .searchProduct(this.prodToSearch).toPromise()
       .then((resp) => {
-        console.log('found prods: ', resp);
         this.products.setFoundProds(resp);
         this.spinner.hideSpinner();
         this.router.navigate(['/search-result']);
@@ -74,4 +86,5 @@ export class HomeComponent implements OnInit {
       }
     });
   }
+  
 }

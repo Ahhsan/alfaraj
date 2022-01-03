@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
 import { CartService } from 'src/app/services/cart.service';
 import { ProductService } from 'src/app/services/product.service';
@@ -12,14 +13,15 @@ import { ProductService } from 'src/app/services/product.service';
 export class ProductDetailComponent implements OnInit {
   prod: any;
   relateds: any;
+  selectedLang:String
   qtyToAdd = 1;
   constructor(
     private productService: ProductService,
+    private transltion:TranslateService,
     route: ActivatedRoute,
     private cartService: CartService,
     private toastr:ToastrService,
   ) {
-    console.log(route.snapshot.params.id);
     productService
       .getSingleProd(route.snapshot.params.id)
       .toPromise()
@@ -27,11 +29,24 @@ export class ProductDetailComponent implements OnInit {
         this.prod = product.product;
         this.relateds=product.relativeProducts;
       
-        console.log('product: ', product);
       });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.selectedLang = this.transltion.currentLang;
+    this.transltion.onLangChange.subscribe(lang => {
+      this.selectedLang = lang.lang;
+      if (lang.lang==="en"){
+        document.getElementsByTagName("body")[0].style.direction="ltr"
+      }
+      else {
+        document.getElementsByTagName("body")[0].style.direction="rtl"
+
+      }
+    });
+    this.loadScript("assets/js/jquery.elevatezoom.js");
+    this.loadScript("assets/js/scripts.js");
+  }
   addToCart() {
     this.prod.quantity = this.qtyToAdd;
     this.cartService.addToCart(this.prod);
@@ -50,6 +65,19 @@ export class ProductDetailComponent implements OnInit {
       return;
     }
     this.qtyToAdd -= 1;
+  }
+  changeProd(id){
+    this.productService.getProdById(id).then(pro=>{
+      this.prod=pro;
+      scrollTo(0,0)
+    })
+  }
+  loadScript(src: string) {
+    setTimeout(() => {
+      let sw = document.createElement('script');
+      sw.setAttribute('src', src);
+      document.getElementsByTagName('body')[0].appendChild(sw);
+    }, 1500);
   }
 }
 let dummyProduct = {
