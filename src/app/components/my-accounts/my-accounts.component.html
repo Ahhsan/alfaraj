@@ -11,32 +11,38 @@
               <li class="nav-item">
                 <a
                   class="nav-link"
-                  [class.arabicStyle]="selectedLang==='ar'" 
+                  [class.arabicStyle]="selectedLang === 'ar'"
                   (click)="ordersView = true"
                   id="orders-tab"
                   data-toggle="tab"
                   role="tab"
                   aria-controls="orders"
                   aria-selected="false"
-                  ><i class="ti-shopping-cart-full"></i>{{"myaccount.orders" |translate}}</a
+                  ><i class="ti-shopping-cart-full"></i
+                  >{{ "myaccount.orders" | translate }}</a
                 >
               </li>
               <li class="nav-item">
                 <a
                   class="nav-link"
-                  [class.arabicStyle]="selectedLang==='ar'" 
+                  [class.arabicStyle]="selectedLang === 'ar'"
                   (click)="ordersView = false"
                   id="account-detail-tab"
                   data-toggle="tab"
                   role="tab"
                   aria-controls="account-detail"
                   aria-selected="true"
-                  ><i class="ti-id-badge"></i>{{"myaccount.accountDetails" |translate}}</a
+                  ><i class="ti-id-badge"></i
+                  >{{ "myaccount.accountDetails" | translate }}</a
                 >
               </li>
               <li class="nav-item">
-                <a [class.arabicStyle]="selectedLang==='ar'" class="nav-link" (click)="logOut()"
-                  ><i class="ti-lock"></i>{{"myaccount.logout" |translate}}</a
+                <a
+                  [class.arabicStyle]="selectedLang === 'ar'"
+                  class="nav-link"
+                  (click)="logOut()"
+                  ><i class="ti-lock"></i
+                  >{{ "myaccount.logout" | translate }}</a
                 >
               </li>
             </ul>
@@ -60,20 +66,48 @@
                     <table class="table">
                       <thead>
                         <tr>
-                          <th>{{"myaccount.orderCode" |translate}}</th>
-                          <th>{{"myaccount.date" |translate}}</th>
-                          <th>{{"myaccount.total" |translate}}</th>
-                          <th>{{"myaccount.status" |translate}}</th>
+                          <th>{{ "myaccount.orderCode" | translate }}</th>
+                          <th>{{ "myaccount.date" | translate }}</th>
+                          <th>{{ "myaccount.total" | translate }}</th>
+                          <th>
+                            {{ "header.products" | translate | titlecase }}
+                          </th>
+                          <th>{{ "myaccount.status" | translate }}</th>
                         </tr>
                       </thead>
                       <tbody>
-                        <tr *ngFor="let order of myOrders">
+                        <tr class="myOrder" *ngFor="let order of myOrders">
                           <td>
-                            {{"myaccount.orderno" |translate}}  {{ (order.order_code | uppercase )|| order.orderCode }}
+                            {{ "myaccount.orderno" | translate }}
+                            {{
+                              (order.order_code | uppercase) || order.orderCode
+                            }}
                           </td>
-                          <td>{{ order.createdAt | date:'mediumDate' }}</td>
-                          <td>{{ order.price | currency:'SAR ' }}</td>
-                          <td > <span [class.completedOrder]="order.status==='approved' " class="orderStatus"> {{ this.selectedLang==='en' ?  order.status:order.statusArabic | uppercase }}</span></td>
+                          <td>{{ order.createdAt | date: "mediumDate" }}</td>
+                          <td>{{ order.price | currency: "SAR " }}</td>
+                          <th>
+                            <span
+                              class="detailsButton"
+                              (click)="setOrderForDetail(order.id)"
+                            >
+                              {{ "myaccount.view" | translate }}</span
+                            >
+                          </th>
+
+                          <td>
+                            <span
+                              [ngStyle]="{
+                                backgroundColor: getStatusColor(order.status)
+                              }"
+                              class="orderStatus"
+                            >
+                              {{
+                                this.selectedLang === "en"
+                                  ? order.status
+                                  : (order.statusArabic | uppercase)
+                              }}</span
+                            >
+                          </td>
                         </tr>
                       </tbody>
                     </table>
@@ -95,10 +129,11 @@
                     <div class="row">
                       <div class="form-group col-md-6">
                         <label
-                          >{{"register.First Name" | translate}} <span class="required">*</span></label
+                          >{{ "register.First Name" | translate }}
+                          <span class="required">*</span></label
                         >
                         <input
-                        [attr.disabled]="true"
+                          [attr.disabled]="true"
                           formControlName="firstName"
                           class="form-control"
                           name="name"
@@ -106,9 +141,12 @@
                         />
                       </div>
                       <div class="form-group col-md-6">
-                        <label>{{"register.Lirst Name" | translate}} <span class="required">*</span></label>
+                        <label
+                          >{{ "register.Lirst Name" | translate }}
+                          <span class="required">*</span></label
+                        >
                         <input
-                        [attr.disabled]="true"
+                          [attr.disabled]="true"
                           required=""
                           formControlName="lastName"
                           class="form-control"
@@ -117,10 +155,11 @@
                       </div>
                       <div class="form-group col-md-12">
                         <label
-                          >{{"contactus.email" | translate}}<span class="required">*</span></label
+                          >{{ "contactus.email" | translate
+                          }}<span class="required">*</span></label
                         >
                         <input
-                        [attr.disabled]="true"
+                          [attr.disabled]="true"
                           formControlName="email"
                           class="form-control"
                           name="email"
@@ -130,7 +169,7 @@
                       <div class="form-group col-md-12">
                         <label>City <span class="required">*</span></label>
                         <input
-                        [attr.disabled]="true"
+                          [attr.disabled]="true"
                           formControlName="city"
                           class="form-control"
                           name="email"
@@ -138,9 +177,12 @@
                         />
                       </div>
                       <div class="form-group col-md-12">
-                        <label>{{"register.country" | translate}} <span class="required">*</span></label>
+                        <label
+                          >{{ "register.country" | translate }}
+                          <span class="required">*</span></label
+                        >
                         <input
-                        [attr.disabled]="true"
+                          [attr.disabled]="true"
                           formControlName="country"
                           class="form-control"
                           name="country"
@@ -148,9 +190,12 @@
                         />
                       </div>
                       <div class="form-group col-md-12">
-                        <label>{{"contactus.phone" | translate}} <span class="required">*</span></label>
+                        <label
+                          >{{ "contactus.phone" | translate }}
+                          <span class="required">*</span></label
+                        >
                         <input
-                        [attr.disabled]="true"
+                          [attr.disabled]="true"
                           formControlName="phone"
                           class="form-control"
                           name="phone"
@@ -158,9 +203,9 @@
                         />
                       </div>
                       <div class="form-group col-md-12">
-                        <label>{{"register.Postcode" | translate}} </label>
+                        <label>{{ "register.Postcode" | translate }} </label>
                         <input
-                        [attr.disabled]="true"
+                          [attr.disabled]="true"
                           formControlName="postCode"
                           class="form-control"
                           name="postCode"
@@ -168,16 +213,18 @@
                         />
                       </div>
                       <div class="form-group col-md-12">
-                        <label>{{"register.Street" | translate}} <span class="required">*</span></label>
+                        <label
+                          >{{ "register.Street" | translate }}
+                          <span class="required">*</span></label
+                        >
                         <input
-                        [attr.disabled]="true"
+                          [attr.disabled]="true"
                           formControlName="street"
                           class="form-control"
                           name="street"
                           type="text"
                         />
                       </div>
-                  
                     </div>
                   </form>
                 </div>
@@ -185,6 +232,31 @@
             </div>
           </div>
         </div>
+      </div>
+    </div>
+    <div *ngIf="myOrders && orderToShow" #orderDetails class="orderDetails">
+      <div class="detailsWrapper">
+        <div>
+          <h6 class="d-inline">
+            {{ "myaccount.orderCode" | translate }}&nbsp;&nbsp;&nbsp;
+          </h6>
+          <h6 class="d-inline orderCode">{{ orderToShow.orderCode }}</h6>
+        </div>
+        <h5 [ngStyle]="{ textAlign: selectedLang === 'en' ? 'unset' : 'right' }" class="mt-5">{{ "header.products" | translate | titlecase }}</h5>
+        <div class="orderedProds" *ngFor="let prod of orderToShow.products">
+          <div
+            class="orderedProduct"
+            [ngStyle]="{ textAlign: selectedLang === 'en' ? 'unset' : 'right' }"
+          >
+            {{
+              selectedLang === "en" ? prod.productName : prod.productNameArabic
+            }}
+            <div  [ngStyle]="{ float: selectedLang === 'en' ? 'right' : 'left' }" >
+              <span [ngStyle]="{ float: selectedLang === 'en' ? 'unset' : 'right' }" class="mx-3">X</span> <span>{{ prod.quantity }}</span>
+            </div>
+          </div>
+        </div>
+        <span class="crossIcon" (click)="closeDetailsWrapper()">X</span>
       </div>
     </div>
   </div>

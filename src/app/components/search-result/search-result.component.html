@@ -19,7 +19,7 @@
                                 <div class="product_info">
                                     <h6 class="product_title"><a class="prodName" [routerLink]="['/product-detail',prod.id]">{{selectedLang==="en"?prod.name:prod.nameArabic }}</a></h6>
                                    <div [class.arabicStyle]="selectedLang=='ar'">
-                                    <a href=""><b>{{prod.user}}</b></a>
+                                    <a [routerLink]="['/agent',prod.user]"><b>{{prod.user}}</b></a>
                                    </div>
                                     <div  class="product_price">
                                         <span [class.arabicStyle]="selectedLang=='ar'" class="price">{{prod.reduced | currency:'SAR '}}</span>

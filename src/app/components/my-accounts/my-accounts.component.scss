@@ -2,12 +2,13 @@
   cursor: pointer;
 }
 .orderStatus {
-  background: var(--bs-danger);
+  // background: var(--bs-danger);
   color: #fff;
   padding: 3px 7px;
   border-radius: 10px;
   font-size: 12px;
   padding-bottom: 5px;
+  text-transform: capitalize;
 }
 .completedOrder{
     background: var(--success); 
@@ -18,4 +19,62 @@ table{
 .icons{
 
   margin: 0px 20px;
+}
+.myOrder:last-child{
+  td {
+    padding-bottom: 1rem !important;
+  }
+}
+.orderDetails{
+  background: rgba(0,0,0,0.3);
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: 9;
+  top: 0px;
+  transition: 0.15s ease-in-out;
+  opacity: 0;
+  display: none;
+}
+.detailsWrapper{
+  width: 50%;
+    background: white;
+    min-height: 400px;
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -70%);
+    border-radius: 10px;
+    padding: 2rem;
+}
+.crossIcon{
+  font-size: 2rem;
+  font-weight: bold;
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  color: var(--red);
+  cursor: pointer;
+
+}
+.detailsButton{
+  background: var(--bs-warning);
+  color: white;
+  padding: 5px;
+  border-radius: 5px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.orderCode{
+  color:var(--bs-green)
+}
+.orderedProduct{
+  text-transform: capitalize;
+}
+@media (max-width:768px) {
+  .detailsWrapper{
+    width: 95%;
+    margin: auto;
+  }
 }

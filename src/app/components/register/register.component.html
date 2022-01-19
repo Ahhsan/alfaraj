@@ -11,11 +11,11 @@
                     <div class="login_wrap">
                         <div class="padding_eight_all bg-white">
                             <div class="heading_s1">
-                                <h3>{{"register.create" |translate}}</h3>
+                                <h3 [class.arabicStyle]="selectedLang==='ar'">{{"register.create" |translate}}</h3>
                             </div>
                             <form [formGroup]="userForm"> 
                                 
-                                <div class="form-group mb-3">
+                                <div [class.arabicStyle]="selectedLang==='ar'" class="form-group mb-3">
                                     <b class="mb-4">{{"register.Sign up as" |translate}}</b><br>
 
                                     <label for="customer" class="mr-2">{{"register.Customer" | translate}}</label>
@@ -27,72 +27,75 @@
                                     <span *ngIf="userForm.get('confirmPassword').touched && userForm.get('confirmPassword').invalid" class="text-danger">{{"general.password" | translate}} {{"register.isRequired" | translate}}</span>
                                
                                 </div>
-                                <div *ngIf="showStoreName" class="form-group mb-3">
+                                <div *ngIf="showStoreName" [class.arabicStyle]="selectedLang==='ar'" class="form-group mb-3 checkTarget">
                                     <label for="">{{"register.storeName" | translate}}</label>
-                                    
                                     <input formControlName="store" type="text" class="form-control" >
                                     <span *ngIf="userForm.get('store').touched && userForm.get('store').invalid" class="text-danger">{{"register.storeName" | translate}} {{"register.isRequired" | translate}}</span>
                                
+                                    <label for="">اسم المتجر بالعربي</label>
+                                    <input formControlName="storeArabic" type="text" class="form-control" >
+                                    <span *ngIf="userForm.get('storeArabic').touched && userForm.get('storeArabic').invalid" class="text-danger">{{"register.storeName" | translate}} {{"register.isRequired" | translate}}</span>
+                               
                                 </div>
                                 <div class="form-group mb-3">
-                                    <label for="">{{"register.First Name" | translate}}</label>
+                                    <label [class.floatRightArabic]="selectedLang==='ar'" for="">{{"register.First Name" | translate}}</label>
                                     <input formControlName="firstName" type="text" class="form-control" >
                                     <span *ngIf="userForm.get('firstName').touched && userForm.get('firstName').invalid" class="text-danger">{{"register.First Name" | translate}} {{"register.isRequired" | translate}}</span>
                                 </div>
                                 <div class="form-group mb-3">
-                                    <label for="">{{"register.Last Name" | translate}}</label>
+                                    <label [class.floatRightArabic]="selectedLang==='ar'" for="">{{"register.Last Name" | translate}}</label>
 
                                     <input formControlName="lastName" type="text" class="form-control" >
                                     <span *ngIf="userForm.get('lastName').touched && userForm.get('lastName').invalid" class="text-danger">{{"register.Last Name" | translate}} {{"register.isRequired" | translate}}</span>
                                
                                 </div>
                                 <div class="form-group mb-3">
-                                    <label for="">{{"contactus.email" | translate}}</label>
+                                    <label [class.floatRightArabic]="selectedLang==='ar'" for="">{{"contactus.email" | translate}}</label>
 
                                     <input formControlName="email" type="email" class="form-control">
                                     <span *ngIf="userForm.get('email').touched && userForm.get('email').invalid" class="text-danger">{{"register.validEmail" | translate}} {{"register.isRequired" | translate}}</span>
                                
                                 </div>
                                 <div class="form-group mb-3">
-                                    <label for="">{{"register.Street" | translate}}</label>
+                                    <label [class.floatRightArabic]="selectedLang==='ar'" for="">{{"register.Street" | translate}}</label>
                                     <input formControlName="street" type="text" class="form-control">
                                     <!-- <span *ngIf="userForm.get('street').touched && userForm.get('street').invalid" class="t8ext-danger">First name {{"register.isRequired" | translate}}</span> -->
                                
                                 </div>
                                 <div class="form-group mb-3">
-                                    <label for="">{{"register.Postcode" | translate}}</label>
+                                    <label [class.floatRightArabic]="selectedLang==='ar'" for="">{{"register.Postcode" | translate}}</label>
                                     <input formControlName="postcode" type="text" class="form-control" >
                                     <!-- <span *ngIf="userForm.get('postcode').touched && userForm.get('postcode').invalid" class="text-danger">First name {{"register.isRequired" | translate}}</span> -->
                                
                                 </div>
                                 <div class="form-group mb-3">
-                                    <label for="">{{"register.city" | translate}}</label>
+                                    <label [class.floatRightArabic]="selectedLang==='ar'" for="">{{"register.city" | translate}}</label>
                                     <input formControlName="city" type="text" class="form-control" >
                                     <span *ngIf="userForm.get('city').touched && userForm.get('city').invalid" class="text-danger">City {{"register.isRequired" | translate}}</span>
                                
                                 </div>
                                 <div class="form-group mb-3">
-                                    <label for="">{{"register.country" | translate}}</label>
+                                    <label [class.floatRightArabic]="selectedLang==='ar'" for="">{{"register.country" | translate}}</label>
                                 
                                     <input formControlName="country" type="text" class="form-control">
                                     <span *ngIf="userForm.get('country').touched && userForm.get('country').invalid" class="text-danger">Country {{"register.isRequired" | translate}}</span>
                                
                                 </div>
                                 <div class="form-group mb-3">
-                                    <label for="">{{"contactus.phone" | translate}}</label>
+                                    <label [class.floatRightArabic]="selectedLang==='ar'" for="">{{"contactus.phone" | translate}}</label>
                                     <input formControlName="phone" type="number" class="form-control" >
                                
                                     <span *ngIf="userForm.get('phone').touched && userForm.get('phone').invalid" class="text-danger">{{"contactus.phone" | translate}} {{"register.isRequired" | translate}}</span>
                                 </div>
                         
                                 <div class="form-group mb-3">
-                                    <label for="">{{"general.password" | translate}}</label>
+                                    <label [class.floatRightArabic]="selectedLang==='ar'" for="">{{"general.password" | translate}}</label>
                                     <input class="form-control" formControlName="password" required="" type="password" name="password" >
                                     <span *ngIf="userForm.get('password').touched && userForm.get('password').invalid" class="text-danger">{{"general.password" | translate}} {{"register.isRequired" | translate}}</span>
                                
                                 </div>
                                 <div class="form-group mb-3">
-                                    <label for="">{{"register.Confirm Password" | translate}}</label>
+                                    <label [class.floatRightArabic]="selectedLang==='ar'" for="">{{"register.Confirm Password" | translate}}</label>
                                     <input class="form-control" formControlName="confirmPassword" required="" type="password" name="password" >
                                     <span *ngIf="userForm.get('confirmPassword').touched && userForm.get('confirmPassword').invalid" class="text-danger">{{"general.password" | translate}} {{"register.isRequired" | translate}}</span>
                             
@@ -105,7 +108,7 @@
                                     <div class="chek-form">
                                         <div class="custome-checkbox">
                                             <input class="form-check-input" formControlName="agreeToTerms" type="checkbox" name="checkbox" id="exampleCheckbox2" value="">
-                                            <label class="form-check-label" for="exampleCheckbox2"><span>{{"register.terms" | translate}}</span></label>
+                                            <label [class.floatRightArabic]="selectedLang==='ar'" class="form-check-label" for="exampleCheckbox2"><span>{{"register.terms" | translate}}</span></label>
                                         </div>
                                     </div>
                                 </div>

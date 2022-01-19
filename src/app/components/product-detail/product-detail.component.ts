@@ -14,6 +14,7 @@ export class ProductDetailComponent implements OnInit {
   prod: any;
   relateds: any;
   selectedLang:String
+  inCart=false;
   qtyToAdd = 1;
   constructor(
     private productService: ProductService,
@@ -28,6 +29,19 @@ export class ProductDetailComponent implements OnInit {
       .then((product: any) => {
         this.prod = product.product;
         this.relateds=product.relativeProducts;
+        let foundInCart=this.cartService.getCartProd(this.prod.id);
+        
+        if(foundInCart){
+          this.qtyToAdd=foundInCart.quantity;
+          console.log('qtyTOAdd: ',this.qtyToAdd);
+          this.inCart=true;
+          
+        }
+        else {
+        this.qtyToAdd=1
+        console.log('qtyTOAdd: ',this.qtyToAdd);
+
+        }
       
       });
   }
@@ -48,26 +62,44 @@ export class ProductDetailComponent implements OnInit {
     this.loadScript("assets/js/scripts.js");
   }
   addToCart() {
+    if (this.qtyToAdd<1){
+      if (this.selectedLang === 'en') {
+        this.toastr.error('Quantity cannot be less than 1');
+      } else {
+        this.toastr.error('لا يمكن أن تكون الكمية أقل من 1');
+      }
+      return;
+    }
     this.prod.quantity = this.qtyToAdd;
     this.cartService.addToCart(this.prod);
+    this.inCart=true;
+
   }
   increaseQty() {
+    console.log('qty befoer update: ',this.qtyToAdd);
+    
     if (this.qtyToAdd>=this.prod.quantity){
       this.toastr.error('Quantity can not be more than available quantity')
       return;
     }
     this.qtyToAdd += 1;
+    setTimeout(() => {
+      console.log('qty after update: ',this.qtyToAdd);
+    }, 3000);
+
   }
   decreaseQty() {
-    if (this.qtyToAdd<1){
+    if (this.qtyToAdd<=1){
       this.qtyToAdd=1
       this.toastr.error('Quantity can not be less than 1')
       return;
     }
-    this.qtyToAdd -= 1;
+    else { 
+      this.qtyToAdd -= 1;
+    }
   }
   changeProd(id){
-    this.productService.getProdById(id).then(pro=>{
+    this.productService.getSingleProd(id).toPromise().then(pro=>{
       this.prod=pro;
       scrollTo(0,0)
     })
@@ -80,22 +112,4 @@ export class ProductDetailComponent implements OnInit {
     }, 1500);
   }
 }
-let dummyProduct = {
-  id: 1,
-  user: 'abc',
-  price: 34,
-  shipping: false,
-  quantity: 8,
-  reduced: 434,
-  name: 'this is something',
-  minimumQuantity: 12,
-  shortDescription: 'this is a cool project',
-  category: 'love',
-  color: 'red',
-  longDescription:
-    'Donec ut dolor. Morbi vel lectus in quam fringilla rhoncus. Mauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis.',
-  image: 'https://i.imgur.com/aybxovW.jpg',
-  dimensions: '448: 4” x 4” x 8", RSC bo',
-  weight: 112,
-  sky: 'sdfs3',
-};
+

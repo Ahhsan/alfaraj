@@ -1,13 +1,11 @@
-<!-- START MAIN CONTENT -->
-<app-header></app-header>
+<app-header showcats="false"></app-header>
 <div class="main_content">
-  <!-- START SECTION SHOP -->
   <div class="section">
     <div class="container">
-      <div *ngIf="allProds" class="row">
-        <div class="col-lg-12">
+      <div class="row">
+        <div class="col-lg-9">
+          <h1 class="catId">{{catId}}</h1>
           <div class="row shop_container lis">
-            <h1>{{ catId }}</h1>
             <div *ngFor="let prod of allProds" class="col-md-4">
               <div class="product">
                 <div class="product_img">
@@ -15,8 +13,10 @@
                 </div>
                 <div [class.arabicStyle]="selectedLang==='ar'" class="product_info">
                   <h6 class="m-0 product_title">
-                    <a [routerLink]="['/product-detail', prod.id]">{{selectedLang==="en"?prod.name:prod.nameArabic }}</a>
-                    <a [routerLink]="['/agent', prod.user]" class="my-1 storeName">{{prod.user}}</a>
+                    <a [routerLink]="['/product-detail', prod.id]">{{
+                      selectedLang === "en" ? prod.name : prod.nameArabic
+                    }}</a>
+                    <a [routerLink]="['/agent', prod.user]" class="storeName">{{prod.user}}</a>
                   </h6>
                   <div class="product_price">
                     <span class="price">{{
@@ -29,30 +29,94 @@
                   </div>
 
                   <div class="prod_desc">
-                    <p class="shortDesc">{{ selectedLang==="en" ? prod.shortDescription :prod.shortDescriptionArabic}}</p>
+                    <p>
+                      {{
+                        selectedLang === "en"
+                          ? prod.shortDescription
+                          : prod.shortDescriptionArabic
+                      }}
+                    </p>
                   </div>
                   <div class="actions">
                     <button
+                      [class.addToCartAr]="selectedLang === 'ar'"
                       class="addToCart btn btn-danger"
                       (click)="addToCart(prod)"
                     >
-                      <i class="icon-basket-loaded"></i>{{"home.addtocart" | translate}}
+                      <i class="icon-basket-loaded"></i
+                      >{{ "home.addtocart" | translate }}
                     </button>
                   </div>
                 </div>
               </div>
             </div>
+            <div *ngIf="allProds?.length > 0" class="col-md-12">
+              <div class="pagination">
+                <button
+                  [disabled]="currentPage === 1"
+                  [class.disabled]="currentPage === 1"
+                  class="back btn btn-info"
+                  (click)="previousPage()"
+                >
+                  <span class="fas fa-chevron-left"></span>
+                  {{"general.previous" |translate}}
+                </button>
+                <button
+                  [disabled]="currentPage === totalPages"
+                  [class.disabled]="currentPage === totalPages"
+                  class="next btn btn-info"
+                  (click)="nextPage()"
+                >
+                  {{"general.next" |translate}} <span class="fas fa-chevron-right"></span>
+                </button>
+              </div>
+            </div>
+
           </div>
         </div>
-      </div>
-      <div *ngIf="allProds?.length===0" class="noProds">
-        <div class="noItems">
-          <p class="text-center noItemsMsg">
-            {{"category.noProds" | translate}}
-          </p>
+        <div
+          class="col-lg-3 order-lg-first mt-4 pt-2 mt-lg-0 pt-lg-0"
+        >
+          <div class="sidebar">
+            <div class="widget">
+              <div class="categories_wrap">
+                <button
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#navCatContent"
+                  aria-expanded="false"
+                  class="categories_btn"
+                >
+                  <i class="linearicons-menu"></i
+                  ><span>{{ "header.allcats" | translate }} </span>
+                </button>
+                <div id="navCatContent" class="nav_cat navbar collapse">
+                  <ul class="catlist">
+                    <li *ngFor="let cat of cats">
+                      <a
+                        [class.arText]="selectedLang === 'ar'"
+                        class="dropdown-item nav-link nav_item"
+                        [routerLink]="['/products-category', cat.name]"
+                        ><i class="fas fa-list-ul"></i>
+                        <span>{{
+                          selectedLang === "en" ? cat.name : cat.nameArabic
+                        }}</span></a
+                      >
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="allProds?.length === 0">
+          <div class="noItems">
+            <p class="text-center noItemsMsg">{{"category.noProds" |translate}}</p>
+          </div>
         </div>
       </div>
     </div>
   </div>
-  <!-- END SECTION SHOP -->
+  <script>
+  </script>
 </div>

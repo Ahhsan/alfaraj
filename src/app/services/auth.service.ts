@@ -27,7 +27,7 @@ export class AuthService {
     });
   
   }
-
+  
   logout() {
     this.loggedUser.next(null);
     localStorage.clear();
@@ -38,7 +38,7 @@ export class AuthService {
     return this.http.post(environment.baseurl + '/register', data);
   }
   login(data: any) {
-    return this.http.post(environment.baseurl + '/login', data);
+    return this.http.post(environment.baseurl + '/customer/login', data);
   }
   sendContactForm(form) {
     return this.http.post(environment.baseurl + '/contact', form);

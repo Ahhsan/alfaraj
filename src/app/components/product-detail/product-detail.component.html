@@ -8,7 +8,7 @@
             <img
               id="product_img"
               [src]="prod.image"
-              data-zoom-image="https://i.imgur.com/aybxovW.jpg"
+              [attr.data-zoom-image]="prod.image"
               alt="product_img1"
             />
           </div>
@@ -44,21 +44,36 @@
             </div>
 
           </div>
-          <hr />
-          <div class="cart_extra">
+       
+          <div *ngIf="!inCart" class="cart_extra">
             <div class="cart-product-quantity">
-              <div class="quantity">
+              <!-- <div class="quantity">
                 <input (click)="decreaseQty()" type="button" value="-" class="minus" />
                 <input
-                [(ngModel)]="qtyToAdd"
                   type="text"
+                  [disabled]="true"
                   name="quantity"
-                  [value]="qtyToAdd"
+                  [value]="qtyToAdd-1"
                   title="Qty"
                   class="qty"
-                  size="4"
+            
                 />
                 <input (click)="increaseQty()" type="button" value="+" class="plus" />
+              </div> -->
+              <div class="quantity">
+                <button class="btn btn-secondary" (click)="decreaseQty()" >-</button>
+              
+                <input
+                  type="number"
+                  name="quantity"
+                  [value]="qtyToAdd"
+                  [disabled]="true"
+                  [max]="prod.availableQuantity"
+                  class="qty"
+                  
+                />
+                <button class="btn btn-secondary" (click)="increaseQty()" >+</button>
+
               </div>
             </div>
             <div class="cart_btn">

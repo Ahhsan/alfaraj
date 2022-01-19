@@ -12,6 +12,10 @@ export class ProductsComponent implements OnInit {
   allProds: any;
   selectedLang:any;
   cats:any;
+  totalPages = 0;
+  totalProducts = 0;
+  currentPage = 1;
+  productsToShow = 9;
   constructor(
     private products: ProductService,
     private cartService: CartService,
@@ -30,9 +34,16 @@ export class ProductsComponent implements OnInit {
 
       }
     });
-    this.products.allProds.subscribe((prods) => {
-      this.allProds = prods;
-    });
+    this.products
+      .getProducts({ page: this.currentPage, limit: this.productsToShow }).toPromise()
+      .then((prods: any) => {
+        console.log('arrived prods: ', prods);
+        this.totalPages = Math.ceil(prods.totalProducts / this.productsToShow);
+        console.log('totalPages: ',this.totalPages);
+        
+
+        this.allProds = prods.products;
+      });
     this.products.getAllCats().then(categories=>{
       this.cats=categories;
       
@@ -40,5 +51,21 @@ export class ProductsComponent implements OnInit {
   }
   addToCart(prod) {
     this.cartService.addToCart(prod);
+  }
+  nextPage() {
+    this.products
+      .getProducts({ page: this.currentPage + 1, limit: this.productsToShow }).toPromise()
+      .then((prods: any) => {
+        this.allProds = prods.products;
+        this.currentPage += 1;
+      });
+  }
+  previousPage() {
+    this.products
+      .getProducts({ page: this.currentPage - 1, limit: this.productsToShow }).toPromise()
+      .then((prods: any) => {
+        this.allProds = prods.products;
+        this.currentPage -= 1;
+      });
   }
 }

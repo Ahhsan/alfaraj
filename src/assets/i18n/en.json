@@ -60,7 +60,9 @@
     "noAccount":"Don't Have an Account? ",
     "signUp":"Sign up now",
     "searchResults":"Search Results...",
-    "noprods":">No Products found..."
+    "noprods":"No Products found...",
+  "next":"Next",
+  "previous":"Previous"
   },
   "register":{
       "create":"Create an Account",
@@ -86,6 +88,7 @@
       "Product":"Product",
       "Price":"Price",
       "Quantity":"Quantity",
+      "tax":"Tax",
       "Total":"Total",
       "remove":"Remove",
       "Cart Totals":"Cart Totals",
@@ -112,7 +115,8 @@
       "total":"Total",
       "status":"Status",
       "orderno":"Order #: ",
-      "logout":"Logout"
+      "logout":"Logout",
+      "view":"View"
   },
   "footer":{
       "useful":"Useful Links",

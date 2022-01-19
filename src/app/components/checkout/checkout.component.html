@@ -96,8 +96,12 @@
                     <td>{{'cart.freeShipping' | translate}}</td>
                   </tr>
                   <tr>
+                    <td>{{'cart.tax' | translate }}</td>
+                    <th>{{tax | currency:'SAR '}} (15%)</th>
+                  </tr>
+                  <tr>
                     <th>Total</th>
-                    <td class="product-subtotal">{{grandTotal | currency: 'SAR'}}</td>
+                    <td class="product-subtotal">{{(grandTotal)+(grandTotal*.15) | currency: 'SAR'}}</td>
                   </tr>
                 </tfoot>
               </table>

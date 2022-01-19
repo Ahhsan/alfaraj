@@ -14,7 +14,7 @@ import { SpinnerService } from 'src/app/services/spinner.service';
 })
 export class HomeComponent implements OnInit {
 
-  allProds = [];
+  allProds:any;
   prodToSearch = '';
   cartItemCount: number;
   grandTotal: number;
@@ -41,8 +41,10 @@ export class HomeComponent implements OnInit {
     })
   }
   ngOnInit(): void {
-    this.products.allProds.subscribe((prods) => {
-      this.allProds = prods;
+    this.products.getProducts({page:1,limit:8}).subscribe((prods:any) => {
+      console.log("prods resp: ",prods);
+      
+      this.allProds = prods.products;
     });
     this.selectedLang = this.transltion.currentLang;
     this.transltion.onLangChange.subscribe(lang => {
@@ -61,7 +63,7 @@ export class HomeComponent implements OnInit {
   }
   searchProd() {
     this.products
-      .searchProduct(this.prodToSearch).toPromise()
+      .searchProduct(this.prodToSearch,this.selectedLang).toPromise()
       .then((resp) => {
         this.products.setFoundProds(resp);
         this.spinner.hideSpinner();

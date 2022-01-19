@@ -46,6 +46,27 @@
                         </div>
                         
                     </div>
+                    <div *ngIf="allProds?.length > 0" class="col-md-12">
+                        <div class="pagination">
+                          <button
+                            [disabled]="currentPage === 1"
+                            [class.disabled]="currentPage === 1"
+                            class="back btn btn-info"
+                            (click)="previousPage()"
+                          >
+                            <span class="fas fa-chevron-left"></span>
+                            Previous
+                          </button>
+                          <button
+                            [disabled]="currentPage === totalPages"
+                            [class.disabled]="currentPage === totalPages"
+                            class="next btn btn-info"
+                            (click)="nextPage()"
+                          >
+                            {{"general.next" |translate}} <span class="fas fa-chevron-right"></span>
+                          </button>
+                        </div>
+                      </div>
                     <!-- <div class="row">
                         <div class="col-12">
                             <ul class="pagination mt-3 justify-content-center pagination_style1">

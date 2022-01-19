@@ -17,6 +17,7 @@ export class CheckoutComponent implements OnInit {
   grandTotal: number;
   cartItems = [];
   selectedLang:String
+  tax:number;
   shippingAddress: String;
   constructor(
     private cartService: CartService,
@@ -31,6 +32,7 @@ export class CheckoutComponent implements OnInit {
 
     this.cartService.totalPayableAmount.subscribe((amount) => {
       this.grandTotal = amount;
+      this.tax=Math.floor(this.grandTotal*.15);
     });
     this.checkoutForm = fb.group({
       firstName: ['', Validators.required],
@@ -60,13 +62,22 @@ export class CheckoutComponent implements OnInit {
   }
   async onPlaceOrder() {
     this.authService.checkLogin().then((status) => {
+      let orderedProducts=[];
       if (status) {
-        this.checkoutForm.value.items = this.cartItems;
+        this.cartItems.forEach(item=>{
+          item.price=item.reduced * item.quantity;
+          orderedProducts.push({
+            productId:item.id,
+            quantity:item.quantity,
+            price:item.price,
+          })
+        })
+        this.checkoutForm.value.items = orderedProducts;
         this.checkoutForm.value.price = this.grandTotal;
         this.checkoutForm.value.userId = 3;
         let orderForm = {
-          orderItems: this.cartItems,
-          price: this.grandTotal,
+          orderItems: orderedProducts,
+          price: this.grandTotal+this.tax,
           shippingAddress:
             this.checkoutForm.value.firstName +
             ' ' +
@@ -83,7 +94,7 @@ export class CheckoutComponent implements OnInit {
             this.checkoutForm.value.country +
             ' ',
         };
-        if (this.shippingAddress.trim()===""){
+        if (orderForm.shippingAddress.trim()===""){
           this.toastrService.error(this.selectedLang==='en' ? 'Please enter address':'الرجاء إدخال العنوان');
 
           return;

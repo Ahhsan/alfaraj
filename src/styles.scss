@@ -85,3 +85,31 @@
 .arabicStyle{
   text-align: right !important;
 }
+
+
+del{  
+  margin: 0px 10px !important;
+}
+button:disabled {
+  cursor: not-allowed;
+  pointer-events: all !important;
+}
+.noItemsMsg {
+  font-size: 2rem;
+  max-width: 80%;
+  line-height: 1.2;
+}
+.noItems{
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.pagination{
+  display: flex;
+  justify-content: space-between;
+  padding: 0px 5rem;
+}
+.floatRightArabic{
+  float: right;
+}

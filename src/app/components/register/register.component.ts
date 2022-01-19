@@ -32,6 +32,7 @@ export class RegisterComponent implements OnInit {
       country: ['', Validators.required],
       phone: ['', Validators.required],
       store: [''],
+      storeArabic: [''],
       agreeToTerms:[false],
     });
   }
@@ -78,10 +79,11 @@ export class RegisterComponent implements OnInit {
       this.toastr.error(this.selectedLang==='en' ? 'Please agree to terms':'الرجاء الموافقة على الشروط');
       return;
     }
-    // if (this.userForm.value.role==="customer"){
-    // }
-    delete this.userForm.value.store
+    if (this.userForm.value.role==="customer"){
+      delete this.userForm.value.store
+    }
     delete this.userForm.value.confirmPassword;
+    delete this.userForm.value.agreeToTerms;
     
     this.auth
       .register(this.userForm.value)

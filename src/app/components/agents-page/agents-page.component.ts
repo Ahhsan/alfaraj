@@ -14,7 +14,11 @@ export class AgentsPageComponent implements OnInit {
   cartItemCount: number;
   grandTotal: number;
   storeName:any
-  selectedLang:String
+  selectedLang:String;
+  totalPages = 0;
+  totalProducts = 0;
+  currentPage = 1;
+  productsToShow = 9;
   constructor(
     private products: ProductService,
     private cartService: CartService,
@@ -42,12 +46,37 @@ export class AgentsPageComponent implements OnInit {
     });
     this.storeName=this.route.snapshot.params.id
     this.products
-      .getStoreProds(this.route.snapshot.params.id)
-      .subscribe((prods) => {
-        this.allProds = prods;
-      });
+    .getStoreProds(this.storeName,{ page: this.currentPage, limit: this.productsToShow })
+    .subscribe((prods:any) => {
+      this.allProds = prods.products;
+      console.log("all prods of stoer: ",this.allProds);
+      
+      this.totalPages=Math.ceil(prods.totalProducts/this.productsToShow);
+      console.log('Total pages: ',this.totalPages);
+      
+    });
   }
   addToCart(prod) {
     this.cartService.addToCart(prod);
+  }
+  nextPage() {
+    this.products
+      .getStoreProds(this.storeName,{ page: this.currentPage + 1, limit: this.productsToShow }).toPromise()
+      .then((prods: any) => {
+        this.allProds = prods.products;
+        this.currentPage += 1;
+      scrollTo(0,0)
+
+      });
+  }
+  previousPage() {
+    this.products
+      .getStoreProds(this.storeName,{ page: this.currentPage - 1, limit: this.productsToShow }).toPromise()
+      .then((prods: any) => {
+        this.allProds = prods.products;
+        this.currentPage -= 1;
+      scrollTo(0,0)
+
+      });
   }
 }

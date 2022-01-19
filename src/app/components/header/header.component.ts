@@ -48,7 +48,7 @@ export class HeaderComponent implements OnInit {
   }
   searchProd() {
     this.productService
-      .searchProduct(this.prodToSearch).toPromise()
+      .searchProduct(this.prodToSearch,this.selectedLang).toPromise()
       .then((resp) => {
         this.productService.setFoundProds(resp);
         this.spinner.hideSpinner();

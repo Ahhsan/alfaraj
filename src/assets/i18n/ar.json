@@ -62,7 +62,9 @@
     "noAccount": "ليس لديك حساب؟",
     "signUp": "أفتح حساب الأن",
     "noprods":"لا توجد منتجات ...",
-    "searchResults":"نتائج البحث..."
+    "searchResults":"نتائج البحث...",
+    "next":"التالي",
+    "previous":"السابق"
   },
   "register": {
     "create": "انشئ حساب",
@@ -89,6 +91,7 @@
     "Price": "السعر",
     "Quantity": "كمية",
     "Total": "مجموع",
+    "tax":"ضريبة",
     "remove": "إزالة",
     "Cart Totals": "إجماليات سلة التسوق",
     "Cart Subtotal": "مجموع سلة التسوق",
@@ -113,7 +116,8 @@
     "total": "مجموع",
     "status": "حالة",
     "orderno": "طلب #:",
-    "logout": "تسجيل خروج"
+    "logout": "تسجيل خروج",
+    "view":"رأي"
   },
   "footer": {
     "useful": "روابط مفيدة",
